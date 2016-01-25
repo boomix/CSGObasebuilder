@@ -1,0 +1,162 @@
+"Phrases"
+{
+	"Last mover"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Laatste mover is {red}{1}"
+	}
+	
+
+	"Not moved"
+	{
+		"nl"			"Blok is niet verplaatst door iemand!"
+	}
+
+	"Locked"
+	{
+		"nl"			"Blok vastgezet!"
+	}
+
+	"Unlocked"
+	{
+		"nl"			"Blok losgemaakt!"
+	}
+
+	"Max locked"
+	{
+		"#format"		"{1:i}"
+		"nl"			"Je kan maximaal {red}{1}{default} blokken vastzetten!"
+	}
+
+	"Already locked"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je kan dit blok niet vastzetten, dit blok is al vastgezet door {red}{1}"
+	}
+
+	"Kill"
+	{
+		"nl"			"Kill command is geblokeerd!"
+	}
+
+	"Party left game"
+	{
+		"nl"			"Je vriend in je groep heeft het spel verlaten!"
+	}
+
+	"Party not found"
+	{
+		"nl"			"Gebruiker niet gevonden!"
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je bent niet in hetzelfde team als {red}{1}"
+	}
+
+	"Party self invite"
+	{
+		"nl"			"Je kan jezelf niet uitnodigen!"
+	}
+
+	"Party user in party"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Speler {red}{1}{default} is al in een groep!"
+	}
+
+	"Party invited"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je voegt {red}{1}{default} toe aan de groep!"
+	}
+
+	"Party got invite"
+	{
+		"#format"		"{1:s}"
+		"nl"			"{red}{1}{default} is toegevoegd aan je groep. Type {purple}!accept{default} in {red}20 seconds{default}, om in de groep te gaan."
+	}
+
+	"Party writes accept without invite"
+	{
+		"nl"			"Je bent niet toegevoegd aan een groep!"
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je kan niet accepteren, omdat je niet in dezelfde groep zit als {red}{1}{default}!"
+	}
+
+	"Party already in different party"
+	{
+		"#format"		"{1:s}"
+		"nl"			"{red}{1}{default} zit al in een andere groep!"
+	}
+
+	"Party Im in party"
+	{
+		"nl"			"Je zit al in een groep, je kan niet in nog een groep zitten!"
+	}
+
+	"Party success"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je zit in een groep met {red}{1}{default}. Als je eruit wil type dan {purple}!stopparty"
+	}
+
+	"Party success2"
+	{
+		"#format"		"{1:s}"
+		"nl"			"{red}{1}{default} heeft je uitnodiging geaccepteerd! Om eruit te gaan type {purple}!stopparty"
+	}
+
+	"Party left"
+	{
+		"nl"			"Je bent uit de groep!"
+	}
+
+	"Party left2"
+	{
+		"nl"			"Je vriend heeft de groep verlaten!"
+	}
+
+	"Respawn"
+	{
+		"nl"			"Je kan alleen respawnen tijdens de build/prep tijd."
+	}
+
+	"Shop not enough money"
+	{
+		"nl"			"Sorry, je hebt niet genoeg geld."
+	}
+
+	"Shop bought item"
+	{
+		"#format"		"{1:s}"
+		"nl"			"Je hebt gekocht {red}{1}"
+	}
+
+	"Class change after death"
+	{
+		"nl"			"Je klasse zal veranderen na je dood!"
+	}
+
+	"New zombie"
+	{
+		"#format"		"{1:s}"
+		"nl"			"je bent nu: {1}"
+	}
+
+	"Join message"
+	{
+		"nl"			"Druk {purple}'E'{default} om een blok the verplaatsen, {purple}'G'{default} om het blok vast te zetten, {red}'MOUSE1'{default} om het blok vooruit te zetten, {red}'MOUSE2'{default} om het blok naar achter te zetten"
+	}
+	
+	"Money returned"
+	{
+		"nl"			"Money returned, you can't buy this item twice as builder!"
+	}
+
+}

@@ -1,0 +1,166 @@
+"Phrases"
+{
+	"Last mover"
+	{
+		"#format"		"{1:s}"
+		"en"			"Last mover is {red}{1}"
+	}
+
+	"Not moved"
+	{
+		"en"			"Block is not moved by anyone!"
+	}
+
+	"Locked"
+	{
+		"en"			"Block locked!"
+	}
+
+	"Unlocked"
+	{
+		"en"			"Block unlocked!"
+	}
+
+	"Max locked"
+	{
+		"#format"		"{1:i}"
+		"en"			"You can maximum lock <font color='#ff0000'>{1}</font> blocks!"
+	}
+
+	"Already locked"
+	{
+		"#format"		"{1:s}"
+		"en"			"You can't lock the block, block is already locked by <font color='#ff0000'>{1}</font>"
+	}
+
+	"Kill"
+	{
+		"en"			"Kill command is blocked!"
+	}
+
+	"Party left game"
+	{
+		"en"			"Your friend in party has left the game!"
+	}
+
+	"Party not found"
+	{
+		"en"			"User not found!"
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"en"			"Your not in the same team with {red}{1}"
+	}
+
+	"Party self invite"
+	{
+		"en"			"You can't invite yourself to party!"
+	}
+
+	"Party user in party"
+	{
+		"#format"		"{1:s}"
+		"en"			"Player {red}{1}{default} is already in party!"
+	}
+
+	"Party invited"
+	{
+		"#format"		"{1:s}"
+		"en"			"You invited {red}{1}{default} to party!"
+	}
+
+	"Party got invite"
+	{
+		"#format"		"{1:s}"
+		"en"			"{red}{1}{default} invited you to party. Write {purple}!accept{default} in {red}20 seconds{default}, to join the party."
+	}
+
+	"Party writes accept without invite"
+	{
+		"en"			"Your not invited to any party!"
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"en"			"You can't accept, because you are not in one team with {red}{1}{default}!"
+	}
+
+	"Party already in different party"
+	{
+		"#format"		"{1:s}"
+		"en"			"{red}{1}{default} has already joined different party!"
+	}
+
+	"Party Im in party"
+	{
+		"en"			"Your already in party, you can't join another one!"
+	}
+
+	"Party success"
+	{
+		"#format"		"{1:s}"
+		"en"			"Your in party with {red}{1}{default}. If you want to leave party, write {purple}!stopparty"
+	}
+
+	"Party success2"
+	{
+		"#format"		"{1:s}"
+		"en"			"{red}{1}{default} has accepted your party invite! To leave party write {purple}!stopparty"
+	}
+
+	"Party left"
+	{
+		"en"			"You have left the party!"
+	}
+
+	"Party left2"
+	{
+		"en"			"Your friend has left the party!"
+	}
+
+	"Respawn"
+	{
+		"en"			"You can respawn only during build/prep time."
+	}
+
+	"Shop not enough money"
+	{
+		"en"			"Sorry, you don't have enough money."
+	}
+
+	"Shop bought item"
+	{
+		"#format"		"{1:s}"
+		"en"			"You have bought {red}{1}"
+	}
+
+	"Class change after death"
+	{
+		"en"			"Your class will change after death!"
+	}
+
+	"New zombie"
+	{
+		"#format"		"{1:s}"
+		"en"			"You are now: {1}"
+	}
+
+	"Join message"
+	{
+		"en"			"Press {purple}'E'{default} to move block, {purple}'G'{default} to lock the block, {red}'MOUSE1'{default} to move block forward, {red}'MOUSE2'{default} to move block backward"
+	}
+	
+	"Money returned"
+	{
+		"en"			"Money returned, you can't buy this item twice as builder!"
+	}
+
+	"VIP class fail change"
+	{
+		"en"			"Sorry, you can't select VIP class!"
+	}
+
+}

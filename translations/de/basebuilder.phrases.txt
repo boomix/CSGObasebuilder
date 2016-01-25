@@ -1,0 +1,160 @@
+"Phrases"
+{
+	"Last mover"
+	{
+		"#format"		"{1:s}"
+		"de"			"Block zuletzt bewegt von {red}{1}"
+	}
+	
+	"Not moved"
+	{
+		"de"			"Block wurde von niemandem bewegt."
+	}
+
+	"Locked"
+	{
+		"de"			"Block gespeichert."
+	}
+
+	"Unlocked"
+	{
+		"de"			"Block freigegeben."
+	}
+
+	"Max locked"
+	{
+		"#format"		"{1:i}"
+		"de"			"Du kannst maximal {red}{1}{default} Blöcke speichern."
+	}
+
+	"Already locked"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du kannst den Block nicht speichern, Block wurde schon von {red}{1} gespeichert."
+	}
+
+	"Kill"
+	{
+		"de"			"Der Kill Command ist blockiert."
+	}
+
+	"Party left game"
+	{
+		"de"			"Dein Freund in der Party hat das Spiel verlassen!"
+	}
+
+	"Party not found"
+	{
+		"de"			"Spieler wurde nicht gefunden!"
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du bist nicht im selben Team wie {red}{1}"
+	}
+
+	"Party self invite"
+	{
+		"de"			"Du kannst dich nicht selbst zu einer Party einladen."
+	}
+
+	"Party user in party"
+	{
+		"#format"		"{1:s}"
+		"de"			"Spieler {red}{1}{default} ist bereits in einer anderen Party!"
+	}
+
+	"Party invited"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du hast {red}{1}{default} zur Party eingeladen."
+	}
+
+	"Party got invite"
+	{
+		"#format"		"{1:s}"
+		"de"			"{red}{1}{default} hat dich zur Party eingeladen. Schreibe {purple}!accept{default} innerhalb {red}20 sekunden{default}, um beizutreten."
+	}
+
+	"Party writes accept without invite"
+	{
+		"de"			"Du wurdest zu keiner Party eingeladen."
+	}
+
+	"Party different teams"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du kannst nicht akzeptieren. Weil du nicht im selben Team bist wie {red}{1}{default}!"
+	}
+
+	"Party already in different party"
+	{
+		"#format"		"{1:s}"
+		"de"			"{red}{1}{default} ist einer anderen Party beigetreten!"
+	}
+
+	"Party Im in party"
+	{
+		"de"			"Du bist bereits in einer Party. Du kannst keiner anderen Party beitreten."
+	}
+
+	"Party success"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du bist mit {red}{1}{default} in einer Party. Wenn du die Party verlassen willst schreibe {purple}!stopparty"
+	}
+
+	"Party success2"
+	{
+		"#format"		"{1:s}"
+		"de"			"{red}{1}{default} hat deine Partyeinladung akzeptiert! Schreibe {purple}!stopparty {default}um die Party zu verlassen."
+	}
+
+	"Party left"
+	{
+		"de"			"Du hast die Party verlassen!"
+	}
+
+	"Party left2"
+	{
+		"de"			"Dein Freund hat die Party verlassen!"
+	}
+
+	"Respawn"
+	{
+		"de"			"Du kannst nur während der build/prep Zeit respawnen."
+	}
+
+	"Shop not enough money"
+	{
+		"de"			"Sorry, du hast nicht genug Geld."
+	}
+
+	"Shop bought item"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du hast {red}{1} gekauft."
+	}
+
+	"Class change after death"
+	{
+		"de"			"Deine Klasse wird nach dem Tot gewechselt."
+	}
+
+	"New zombie"
+	{
+		"#format"		"{1:s}"
+		"de"			"Du bist nun: {1}"
+	}
+
+	"Join message"
+	{
+		"de"			"Drücke {purple}'E'{default} um den Block zu bewegen, {purple}'G'{default} um den Block zu speichern, {red}'MOUSE1'{default} um den Block nach vorn zu bewegen, {red}'MOUSE2'{default} um den Block nach hinten zu bewegen."
+	}
+	
+	"Money returned"
+	{
+		"de"			"Geld zurückerstattet, du kannst dieses Item nur einmal als Builder kaufen!"
+	}
+}

@@ -1,2 +1,2 @@
 # CSGObasebuilder
-CS:GO basebuilder, gamemode from cs 1.6. 
+CS:GO basebuilder - zombie mod. 
