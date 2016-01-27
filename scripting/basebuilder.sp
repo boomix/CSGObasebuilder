@@ -40,12 +40,13 @@
 #include "basebuilder/bb_admin.sp"
 #include "basebuilder/bb_help.sp"
 #include "basebuilder/bb_nothisbase.sp"
+#include "basebuilder/bb_laddergravity.sp"
 
 EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.1",
+	name = "Basebuilder 2.2.2",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,

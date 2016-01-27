@@ -100,7 +100,7 @@ public int OnStartTouch(int client, int ent)
 }
 
 
-public void OnGameFrame(){
+public void NotHisBase_OnGameFrame(){
 	
 	
 	if(PushPlayersEnabled())
