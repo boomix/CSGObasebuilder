@@ -98,5 +98,13 @@ public Action BB_PlayerSpawn(Handle event, const char[] name, bool dontBroadcast
 	Shop_PlayerSpawn(client);
 	Help_FirstSpawn(client);
 	NotHisBase_PlayerSpawn(client);
+	LadderGravity_PlayerSpawn(client);
 
+}
+
+public void OnGameFrame()
+{
+	NotHisBase_OnGameFrame();
+	LadderGravity_OnGameFrame();
+	
 }

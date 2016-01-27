@@ -40,6 +40,7 @@
 #include "basebuilder/bb_admin.sp"
 #include "basebuilder/bb_help.sp"
 #include "basebuilder/bb_nothisbase.sp"
+#include "basebuilder/bb_laddergravity.sp"
 
 EngineVersion g_Game;
 
