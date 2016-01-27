@@ -2,37 +2,14 @@
 CS:GO basebuilder - zombie mod. 
 
 Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-# Installation
- * Download 'bb_models.rar 	http://goo.gl/6VWsFy
-=======
-=======
->>>>>>> origin/master
  
 
 #Installation
  * Download bb_models.rar 	http://goo.gl/6VWsFy
-<<<<<<< HEAD
->>>>>>> 6c1afad4a32ca11934de5609987fe977aa791ee4
-=======
->>>>>>> origin/master
  * Download 'BASEBUILDER 2.2.1
  * Extract all the files inside right paths.
  * Add Franc1sco plugin fpvm_interface.smx for golden ak. Download https://forums.alliedmods.net/showthread.php?t=276697
  * Restart your server
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
- 
- 
- # Commands
-=======
-=======
->>>>>>> origin/master
 
 
 
@@ -46,10 +23,6 @@ Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
 
 
 # Commands
-<<<<<<< HEAD
->>>>>>> 6c1afad4a32ca11934de5609987fe977aa791ee4
-=======
->>>>>>> origin/master
  * !lm: is command to check who is the last mover of the object. 
  * !class: is command to change zombie class. 
  * !shop: is command to open up CT/T shop.
@@ -60,29 +33,10 @@ Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
  
  
  
-<<<<<<< HEAD
-<<<<<<< HEAD
- # Admin flags
-=======
 # Admin flags
->>>>>>> 6c1afad4a32ca11934de5609987fe977aa791ee4
-=======
-# Admin flags
->>>>>>> origin/master
   Blocks at any time can be moved by admins with flags: "b, d, z"
   Admin menu command is !bb
   
   
-<<<<<<< HEAD
-<<<<<<< HEAD
- #Server list
- You can find active servers here http://www.gametracker.com/search/csgo/?query=basebuilder&sort=3&order=DESC
- 
-=======
 #Server list
  You can find active servers here http://www.gametracker.com/search/csgo/?query=basebuilder&sort=3&order=DESC
->>>>>>> 6c1afad4a32ca11934de5609987fe977aa791ee4
-=======
-#Server list
- You can find active servers here http://www.gametracker.com/search/csgo/?query=basebuilder&sort=3&order=DESC
->>>>>>> origin/master
