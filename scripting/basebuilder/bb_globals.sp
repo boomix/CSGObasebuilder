@@ -43,6 +43,7 @@ int g_iMaxLocks;
 int g_iRemoveNotUsedBlocks;
 int g_iRemoveBlockAfterDeath;
 int g_iPushPlayersOfBlocks;
+int g_iKickPlayersWithShowPos;
 
 //Colors
 int colorr[35] =  { 0,		25, 	255, 	255, 	30, 	255, 	255, 	0, 		4, 		105, 	139, 	110, 	25, 255, 255, 30, 255, 255, 0, 4, 105, 139, 110		, 25, 255, 255, 30, 255, 255, 0, 4, 105, 139, 110 	};
@@ -54,8 +55,6 @@ int 	clientlocks			[MAXPLAYERS + 1];
 int 	g_iClientClass		[MAXPLAYERS + 1];
 bool 	g_bHasGoldenAK		[MAXPLAYERS + 1];
 bool 	g_bHasSuperKnife	[MAXPLAYERS + 1];
-int 	Golden_ViewModel;
-int 	Golden_WorldModel;
 int 	g_sprite;
 int 	g_iMoneyPerRound;
 bool 	g_bFirstTeamJoin	[MAXPLAYERS + 1];
