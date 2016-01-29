@@ -7,7 +7,7 @@
 #include <emitsoundany>
 #include <smlib>
 #include <sdkhooks>
-#include <fpvm_interface>
+//#include <fpvm_interface>
 #include <multicolors>
 
 #pragma newdecls required
@@ -41,12 +41,13 @@
 #include "basebuilder/bb_help.sp"
 #include "basebuilder/bb_nothisbase.sp"
 #include "basebuilder/bb_laddergravity.sp"
+#include "basebuilder/bb_randomspawnangle.sp"
 
 EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.2",
+	name = "Basebuilder 2.2.4",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,

@@ -33,7 +33,7 @@ public Action BB_PlayerDeath(Handle event, const char[] name, bool dontBroadcast
 	int client = GetClientOfUserId(GetEventInt(event, "userid"));
 	int attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
 	
-	Sounds_OnPlayerDeath(client);
+	Sounds_OnPlayerDeath(client, attacker);
 	OldBlocks_OnPlayerDeath(client);
 	Respawn_OnPlayerDeath(client);
 	Money_OnPlayerDeath(attacker);
@@ -99,6 +99,7 @@ public Action BB_PlayerSpawn(Handle event, const char[] name, bool dontBroadcast
 	Help_FirstSpawn(client);
 	NotHisBase_PlayerSpawn(client);
 	LadderGravity_PlayerSpawn(client);
+	RandomAngle_PlayerSpawn(client);
 
 }
 

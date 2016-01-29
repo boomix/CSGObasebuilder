@@ -70,10 +70,10 @@ public void Sounds_OnPrepTimeEnd()
 
 }
 
-public void Sounds_OnPlayerDeath(int client)
+public void Sounds_OnPlayerDeath(int client, int attacker)
 {
-	if(GetClientTeam(client) == BUILDERS && !IsBuildTime() && !IsPrepTime())
-		EmitSoundToAllAny("sourcemod/basebuilder/zombie_kill.mp3");
+	if(GetClientTeam(client) == BUILDERS && GetClientTeam(attacker) == ZOMBIES && !IsBuildTime() && !IsPrepTime())
+		EmitSoundToAllAny("sourcemod/basebuilder/zombie_kill.mp3", attacker);
 }
 
 public void Sounds_RoundEnd(int winner_team)

@@ -199,11 +199,13 @@ public void OnMapStart()
 
 	PrecacheModel("models/weapons/v_golden_ak47.ani");
 	PrecacheModel("models/weapons/v_golden_ak47.dx90.vtx");
-	Golden_ViewModel = PrecacheModel("models/weapons/v_golden_ak47.mdl");
+	//Golden_ViewModel = 
+	PrecacheModel("models/weapons/v_golden_ak47.mdl");
 	PrecacheModel("models/weapons/v_golden_ak47.vvd");
 	PrecacheModel("models/weapons/w_golden_ak47.ani");
 	PrecacheModel("models/weapons/w_golden_ak47.dx90.vtx");
-	Golden_WorldModel = PrecacheModel("models/weapons/w_golden_ak47.mdl");
+	//Golden_WorldModel = 
+	PrecacheModel("models/weapons/w_golden_ak47.mdl");
 	PrecacheModel("models/weapons/w_golden_ak47.vvd");
 	PrecacheModel("materials/models/weapons/v_models/ak47/ak47.vmt");
 	PrecacheModel("materials/models/weapons/v_models/ak47/ak47.vtf");
