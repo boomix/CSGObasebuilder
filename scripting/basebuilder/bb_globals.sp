@@ -45,11 +45,31 @@ int g_iRemoveBlockAfterDeath;
 int g_iPushPlayersOfBlocks;
 
 //Colors
-int colorr[35] =  { 0,		25, 	255, 	255, 	30, 	255, 	255, 	0, 		4, 		105, 	139, 	110, 	25, 255, 255, 30, 255, 255, 0, 4, 105, 139, 110		, 25, 255, 255, 30, 255, 255, 0, 4, 105, 139, 110 	};
-int colorg[35] =  { 0,		0, 		0, 		0, 		255, 	255, 	132, 	255, 	89, 	11, 	2, 		107,  	0, 0, 0, 255, 255, 132, 255, 89, 11, 2, 107 		, 0, 0, 0, 255, 255, 132, 255, 89, 11, 2, 107		};
-int colorb[35] =  { 0,		255,	0, 		217, 	0, 		0, 		0, 		251, 	0, 		1, 		194, 	104, 	255, 0, 217, 0, 0, 0, 251, 0, 1, 194, 104 			, 255, 0, 217, 0, 0, 0, 251, 0, 1, 194, 104			};
-char colors[][] =	{ "None", "Blue", "Red", "Pink", "Green", "Yellow", "Orange", "Light blue", "Dark green", "Dark red", "Purple", "Gray", "Blue", "Red", "Pink", "Green", "Yellow", "Orange", "Light blue", "Dark green", "Dark red", "Purple", "Gray", "Blue", "Red", "Pink", "Green", "Yellow", "Orange", "Light blue", "Dark green", "Dark red", "Purple", "Gray" };
+int colorr[52] =  	{ 
+						0,	243, 232, 155, 102, 62, 32, 2, 0, 0, 75, 138, 204, 254, 254, 254, 254, 120, 
+							243, 232, 155, 102, 62, 32, 2, 0, 0, 75, 138, 204, 254, 254, 254, 254, 120,
+							243, 232, 155, 102, 62, 32, 2, 0, 0, 75, 138, 204, 254, 254, 254, 254, 120
+					};
+						
+int colorg[52] =  	{
+						0, 	66, 29, 38, 57, 80, 149, 168, 187, 149, 174, 194, 219, 234, 192, 151, 86, 84,
+							66, 29, 38, 57, 80, 149, 168, 187, 149, 174, 194, 219, 234, 192, 151, 86, 84,
+							66, 29, 38, 57, 80, 149, 168, 187, 149, 174, 194, 219, 234, 192, 151, 86, 84
+				
+					};
 
+int colorb[52] =  	{ 
+						0, 	53, 98, 175, 182, 180, 242, 243, 211, 135, 79, 73, 56, 58, 6, 0, 33, 71,
+							53, 98, 175, 182, 180, 242, 243, 211, 135, 79, 73, 56, 58, 6, 0, 33, 71,
+							53, 98, 175, 182, 180, 242, 243, 211, 135, 79, 73, 56, 58, 6, 0, 33, 71
+					};
+
+char colors[][] = 	{ 
+						"None", "Red", 	"Pink", "Purple", "Deep purple", "Indigo", "Blue", "Light blue", "Cyan", "Teal", "Green", "Light green", "Lime", "Yellow", "Amber", "Orange", "Deep orange", "Brown",  
+								"Red", 	"Pink", "Purple", "Deep purple", "Indigo", "Blue", "Light blue", "Cyan", "Teal", "Green", "Light green", "Lime", "Yellow", "Amber", "Orange", "Deep orange", "Brown", 
+								"Red", 	"Pink", "Purple", "Deep purple", "Indigo", "Blue", "Light blue", "Cyan", "Teal", "Green", "Light green", "Lime", "Yellow", "Amber", "Orange", "Deep orange", "Brown"
+					};
+					
 int 	clientlocks			[MAXPLAYERS + 1];
 int 	g_iClientClass		[MAXPLAYERS + 1];
 bool 	g_bHasGoldenAK		[MAXPLAYERS + 1];
