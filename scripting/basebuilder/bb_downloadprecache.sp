@@ -182,35 +182,6 @@ public void OnMapStart()
 
 	
 	//Golden AK47
-	AddFileToDownloadsTable("models/weapons/v_golden_ak47.ani");
-	AddFileToDownloadsTable("models/weapons/v_golden_ak47.dx90.vtx");
-	AddFileToDownloadsTable("models/weapons/v_golden_ak47.mdl");
-	AddFileToDownloadsTable("models/weapons/v_golden_ak47.vvd");
-	AddFileToDownloadsTable("models/weapons/w_golden_ak47.ani");
-	AddFileToDownloadsTable("models/weapons/w_golden_ak47.dx90.vtx");
-	AddFileToDownloadsTable("models/weapons/w_golden_ak47.mdl");
-	AddFileToDownloadsTable("models/weapons/w_golden_ak47.vvd");
-	AddFileToDownloadsTable("materials/models/weapons/v_models/ak47/ak47.vmt");
-	AddFileToDownloadsTable("materials/models/weapons/v_models/ak47/ak47.vtf");
-	AddFileToDownloadsTable("materials/models/weapons/v_models/ak47/ak47_exponent.vtf");
-	AddFileToDownloadsTable("materials/models/weapons/w_models/w_ak47/ak47.vmt");
-	AddFileToDownloadsTable("materials/models/weapons/w_models/w_ak47/ak47.vtf");
-	AddFileToDownloadsTable("materials/models/weapons/w_models/w_ak47/ak47_exponent.vtf");
-
-	PrecacheModel("models/weapons/v_golden_ak47.ani");
-	PrecacheModel("models/weapons/v_golden_ak47.dx90.vtx");
-	Golden_ViewModel = PrecacheModel("models/weapons/v_golden_ak47.mdl");
-	PrecacheModel("models/weapons/v_golden_ak47.vvd");
-	PrecacheModel("models/weapons/w_golden_ak47.ani");
-	PrecacheModel("models/weapons/w_golden_ak47.dx90.vtx");
-	Golden_WorldModel = PrecacheModel("models/weapons/w_golden_ak47.mdl");
-	PrecacheModel("models/weapons/w_golden_ak47.vvd");
-	PrecacheModel("materials/models/weapons/v_models/ak47/ak47.vmt");
-	PrecacheModel("materials/models/weapons/v_models/ak47/ak47.vtf");
-	PrecacheModel("materials/models/weapons/v_models/ak47/ak47_exponent.vtf");
-	PrecacheModel("materials/models/weapons/w_models/w_ak47/ak47.vmt");
-	PrecacheModel("materials/models/weapons/w_models/w_ak47/ak47.vtf");
-	PrecacheModel("materials/models/weapons/w_models/w_ak47/ak47_exponent.vtf");
 	
 	g_sprite = PrecacheModel("materials/sprites/laserbeam.vmt");
 	PrecacheModel("models/weapons/t_arms_professional.mdl");
