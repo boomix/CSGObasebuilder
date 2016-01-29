@@ -1,5 +1,6 @@
 void GiveGoldenAk(int client)
 {
+	FPVMI_SetClientModel(client, "weapon_ak47", Golden_ViewModel, Golden_WorldModel);
 	int weapon = GetPlayerWeaponSlot(client, CS_SLOT_PRIMARY);
 	if(IsValidEntity(weapon))
 	{
@@ -42,6 +43,8 @@ public void GoldenAk_RoundStart()
 		if(g_bHasGoldenAK[i]) 
 		{
 			g_bHasGoldenAK[i] = false;
+			FPVMI_RemoveViewModelToClient(i, "weapon_ak47");
+			FPVMI_RemoveWorldModelToClient(i, "weapon_ak47");
 		}
 	}
 }

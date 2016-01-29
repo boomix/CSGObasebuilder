@@ -7,6 +7,7 @@
 #include <emitsoundany>
 #include <smlib>
 #include <sdkhooks>
+#include <fpvm_interface>
 #include <multicolors>
 
 #pragma newdecls required
@@ -40,14 +41,12 @@
 #include "basebuilder/bb_help.sp"
 #include "basebuilder/bb_nothisbase.sp"
 #include "basebuilder/bb_laddergravity.sp"
-#include "basebuilder/bb_showposkick.sp"
-#include "basebuilder/bb_randomspawnagle.sp"
 
 EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.3",
+	name = "Basebuilder 2.2.2",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,
@@ -126,7 +125,6 @@ public void OnConfigsExecuted()
 	char g_sRemoveBlockAfterDeath[10];
 	char g_sMoneyPerKill[10];
 	char g_sPushPlayersOfBlocks[10];
-	char g_sKickPlayerShowPos[10];
 	kvMainCfg.GetString("Buildtime", 			g_sBuildTime, 		sizeof(g_sBuildTime));
 	kvMainCfg.GetString("PrepTime", 			g_sPrepTime,		sizeof(g_sPrepTime));
 	kvMainCfg.GetString("BuildTimeMessage", 	g_sBuildTimeMsg,	sizeof(g_sBuildTimeMsg));
@@ -139,7 +137,6 @@ public void OnConfigsExecuted()
 	kvMainCfg.GetString("RemoveBlockAfterDeath", g_sRemoveBlockAfterDeath, sizeof(g_sRemoveBlockAfterDeath));
 	kvMainCfg.GetString("MoneyPerKill", 		g_sMoneyPerKill,	sizeof(g_sMoneyPerKill));
 	kvMainCfg.GetString("PushPlayersOfBlocks", 	g_sPushPlayersOfBlocks,	sizeof(g_sPushPlayersOfBlocks));
-	kvMainCfg.GetString("KickPlayerShowPos", 	g_sKickPlayerShowPos,	sizeof(g_sKickPlayerShowPos));
 	
 	
 	g_fBuildTime	= StringToFloat(g_sBuildTime);
@@ -151,7 +148,6 @@ public void OnConfigsExecuted()
 	g_iRemoveNotUsedBlocks 		= StringToInt(g_sRemoveNotUsedBlocks);
 	g_iRemoveBlockAfterDeath 	= StringToInt(g_sRemoveBlockAfterDeath);
 	g_iPushPlayersOfBlocks 		= StringToInt(g_sPushPlayersOfBlocks);
-	g_iKickPlayerShowPos 		= StringToInt(g_sKickPlayerShowPos);
 	
 	g_iMoneyPerRound = StringToInt(g_sMoneyPerKill);
 	
