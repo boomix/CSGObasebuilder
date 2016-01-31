@@ -1,3 +1,8 @@
+public void Locking_OnClientPutInServer(int client)
+{
+	clientlocks[client] = 0;	
+}
+
 public void Locking_RoundStart()
 {
 	LoopAllPlayers(i)

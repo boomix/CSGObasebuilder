@@ -77,6 +77,7 @@ public void OnClientPutInServer(int client)
 	Respawn_OnClientPutInServer(client);
 	Help_OnClientPutInServer(client);
 	NotHisBase_OnClientPutInServer(client);
+	Locking_OnClientPutInServer(client);
 
 }
 

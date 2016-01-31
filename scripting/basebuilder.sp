@@ -47,7 +47,7 @@ EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.4",
+	name = "Basebuilder 2.2.5",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,

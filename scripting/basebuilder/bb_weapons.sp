@@ -58,7 +58,7 @@ public void Weapons_OnPrepTimeStart()
 void ShowWeaponMenu(int client)
 {
 	Menu menu = new Menu(MenuHandlers_PrimaryWeapon);
-	SetMenuTitle(menu, "Primary weapon");
+	menu.SetTitle("Primary weapon");
 	
 	if(!StrEqual(g_LastPrimaryWeapon[client], "") && !StrEqual(g_LastSecondaryWeapon[client], ""))
 		menu.AddItem("last", "Last weapons");
@@ -104,7 +104,7 @@ public int MenuHandlers_PrimaryWeapon(Menu menu, MenuAction action, int client, 
 				GivePlayerItem(client, info);
 				
 				Menu menu2 = new Menu(MenuHandlers_SecondaryWeapon);
-				SetMenuTitle(menu, "Secondary weapon");
+				menu2.SetTitle("Secondary weapon");
 				menu2.AddItem("weapon_deagle", 		"Deagle");
 				menu2.AddItem("weapon_revolver", 	"Revolver");
 				menu2.AddItem("weapon_elite", 		"Dual burretas");
