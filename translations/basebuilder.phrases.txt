@@ -155,7 +155,7 @@
 	
 	"Money returned"
 	{
-		"en"			"Money returned, you can't buy this item twice as builder!"
+		"en"			"Money returned, you can't buy this item twice!"
 	}
 
 	"VIP class fail change"

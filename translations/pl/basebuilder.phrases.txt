@@ -1,0 +1,154 @@
+"Phrases"
+{
+	"Last mover"
+	{
+		"pl"			"Ostatnio ruszany przez {red}{1}"
+	}
+	
+
+	"Not moved"
+	{
+		"pl"			"Ten blok nie byl ruszany przez nikogo!"
+	}
+
+	"Locked"
+	{
+		"pl"			"Blok zablokowany!"
+	}
+
+	"Unlocked"
+	{
+		"pl"			"Blok odblokowany!"
+	}
+
+	"Max locked"
+	{
+		"pl"			"Mozesz zablokowac maksymalnie <font color='#ff0000'>{1}</font> blokow!"
+	}
+
+	"Already locked"
+	{
+		"pl"			"Nie mozesz zablokowac tego bloku,blok jest zablokowany przez <font color='#ff0000'>{1}</font>"
+	}
+
+	"Kill"
+	{
+		"pl"			"Komenda kill jest zablokowana!"
+	}
+
+	"Party left game"
+	{
+		"pl"			"Twoj kolega z party opuscil gre!"
+	}
+
+	"Party not found"
+	{
+		"pl"			"Nieznaleziono gracza!"
+	}
+
+	"Party different teams"
+	{
+		"pl"			"Nie jestescie w tym samym teamie z {red}{1}"
+	}
+
+	"Party self invite"
+	{
+		"pl"			"Nie mozesz zaprosic sam siebie do party!"
+	}
+
+	"Party user in party"
+	{
+		"pl"			"Gracz {red}{1}{default} jest juz w druzynie!"
+	}
+
+	"Party invited"
+	{
+		"pl"			"Zaprosiles {red}{1}{default} do druzyny!"
+	}
+
+	"Party got invite"
+	{
+		"pl"			"\x3{1}\x1 zaprosil Cie do druzyny. Napisz {purple}!accept{default} w {red}20 sekund{default} aby dolaczyc."
+	}
+
+	"Party writes accept without invite"
+	{
+		"pl"			"Nie masz zaproszen do druzyny!"
+	}
+
+	"Party differplt teams"
+	{
+		"pl"			"Nie mozesz zaakceptowac bo nie jestescie razem w druzynie z {red}{1}{default}!"
+	}
+
+	"Party already in differplt party"
+	{
+		"pl"			"{red}{1}{default} dolaczyl juz do innej druzyny"
+	}
+
+	"Party Im in party"
+	{
+		"pl"			"Jestes juz w druzynie, nie mozesz dolaczyc do innej!"
+	}
+
+	"Party success"
+	{
+		"pl"			"Jestes w druzynie z  {red}{1}{default}. Jesli chcesz opuscic druzyne napisz {purple}!stopparty"
+	}
+
+	"Party success2"
+	{
+		"pl"			"{red}{1}{default} zaakcpetowal Twoje zaproszenie! Aby opuscic druzyne napisz {purple}!stopparty"
+	}
+
+	"Party left"
+	{
+		"pl"			"Opusciles druzyne!"
+	}
+
+	"Party left2"
+	{
+		"pl"			"Twoj kolega opuscil druzyne!"
+	}
+
+	"Respawn"
+	{
+		"pl"			"Mozesz sie odrodzic tylko podczas czasu budowania i wchodzenia !"
+	}
+
+	"Shop not plough money"
+	{
+		"pl"			"Sorki, nie masz tyle kasy."
+	}
+
+	"Shop bought item"
+	{
+		"pl"			"Kupiles {red}{1}"
+	}
+
+	"Class change after death"
+	{
+		"pl"			"Twoja klasa zmieni sie po smierci!"
+	}
+
+	"New zombie"
+	{
+		"pl"			"Jestes teraz: {1}"
+	}
+
+	"Join message"
+	{
+		"pl"			"Trzymaj {purple}'E'{default} aby przysuwac klocki, {purple}'G'{default} aby je zatwierdzic, {red}'MOUSE1'{default} aby jet przyblizyc, {red}'MOUSE2'{default} aby je oddalic"
+	}
+
+	"Money returned"
+	{
+		"en"			"Kasa zwrocona, nie mozesz kupic tego dwa razy !"
+	}
+
+	"VIP class fail change"
+	{
+		"en"			"Wybacz, ale nie moýesz wybraã klasy VIP"
+	}
+
+}

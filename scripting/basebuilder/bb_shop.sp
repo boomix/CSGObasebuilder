@@ -1,6 +1,7 @@
 public void Shop_PlayerSpawn(int client)
 {
 	g_buyOnceRound[client] = true;
+	g_buyOnceRoundGravity[client] = true;
 }
 
 public Action CMD_Shop(int client, int args)
@@ -121,9 +122,20 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 				
 				else if(StrEqual(sItem, "gravity"))
 				{
-					float fvalue = StringToFloat(value);
-					float fgravity = GetEntityGravity(client);
-					SetEntityGravity(client, fgravity * fvalue);
+					if(g_buyOnceRoundGravity[client])
+					{
+						
+						float fvalue = StringToFloat(value);
+						float fgravity = GetEntityGravity(client);
+						SetEntityGravity(client, fgravity * fvalue);
+						g_buyOnceRoundGravity[client] = false;
+							
+					} else if(!g_buyOnceRoundGravity[client])
+					{
+						int refreshMoney = Client_GetMoney(client);
+						Client_SetMoney(client, refreshMoney + iPrice);
+						CPrintToChat(client, "%s%T", Prefix, "Money returned", client);		
+					}
 				}
 				
 				else if(StrEqual(sItem, "health"))

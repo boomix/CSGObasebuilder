@@ -36,6 +36,7 @@ char g_sReleaseMsg[150];
 char Prefix[150];
 int BeamSprite;
 bool g_buyOnceRound[MAXPLAYERS + 1];
+bool g_buyOnceRoundGravity[MAXPLAYERS + 1];
 
 int g_iCountdown;
 int g_iRoundTime;
