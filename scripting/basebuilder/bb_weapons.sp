@@ -51,8 +51,38 @@ public void Weapons_OnPrepTimeStart()
 		if(GetClientTeam(i) == BUILDERS) 
 		{
 			ShowWeaponMenu(i);
+			
+			//Anti cheat stuff
+			CreateTimer(0.2, Remove_Knife, i);
 		}
 	}	
+}
+
+public Action Remove_Knife(Handle tmr, any client)
+{
+	int knife = GetPlayerWeaponSlot(client, CS_SLOT_KNIFE);
+	if(knife > -1)
+	{
+		RemovePlayerItem(client, knife);
+		RemoveEdict(knife);	
+	}
+}
+
+public void Weapons_OnPrepTimeEnd()
+{
+	LoopAllPlayers(i)
+	{
+		if(GetClientTeam(i) == BUILDERS)
+		{
+			GivePlayerItem(i, "weapon_knife");
+			
+			if(!StrEqual(g_LastPrimaryWeapon[i], "") && !StrEqual(g_LastSecondaryWeapon[i], ""))
+			{
+				GivePlayerItem(i, g_LastSecondaryWeapon[i]);
+				GivePlayerItem(i, g_LastPrimaryWeapon[i]);	
+			}		
+		}
+	}
 }
 
 void ShowWeaponMenu(int client)
@@ -93,16 +123,14 @@ public int MenuHandlers_PrimaryWeapon(Menu menu, MenuAction action, int client, 
 				GetMenuItem(menu, item, info, sizeof(info));
 				
 				if (StrEqual(info, "last"))
-				{
-					GivePlayerItem(client, g_LastSecondaryWeapon[client]);
-					GivePlayerItem(client, g_LastPrimaryWeapon[client]);
 					return false;
-				}
 				
 				//Set new last weapon
 				g_LastPrimaryWeapon[client] = info;
-				GivePlayerItem(client, info);
 				
+				if(!IsPrepTime() && StrEqual(g_LastPrimaryWeapon[client], ""))
+					GivePlayerItem(client, info);
+
 				Menu menu2 = new Menu(MenuHandlers_SecondaryWeapon);
 				menu2.SetTitle("Secondary weapon");
 				menu2.AddItem("weapon_deagle", 		"Deagle");
@@ -133,7 +161,9 @@ public int MenuHandlers_SecondaryWeapon(Menu menu2, MenuAction action, int clien
 				GetMenuItem(menu2, item, info, sizeof(info));
 				
 				g_LastSecondaryWeapon[client] = info;
-				GivePlayerItem(client, info);
+				
+				if(!IsPrepTime() && StrEqual(g_LastSecondaryWeapon[client], ""))
+					GivePlayerItem(client, info);
 			}
 		}
 	}

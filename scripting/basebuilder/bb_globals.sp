@@ -15,6 +15,7 @@ Handle g_OnBuildTimeStart;
 Handle g_OnPrepTimeStart;
 Handle g_OnPrepTimeEnd;
 Handle TimeTimer;
+Handle g_hTimer_Query[MAXPLAYERS + 1];
 
 bool g_IsBuildTime;
 bool g_IsPrepTime;
@@ -83,3 +84,4 @@ bool 	g_bFirstTeamJoin	[MAXPLAYERS + 1];
 
 bool g_bIsInParty[MAXPLAYERS + 1];
 int g_iInPartyWith[MAXPLAYERS + 1];
+int g_iDecalEntity[MAXPLAYERS + 1] = 1;

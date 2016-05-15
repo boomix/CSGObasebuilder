@@ -16,15 +16,17 @@ public void Respawn_PlayerTeam(int client)
 
 public Action CMD_Respawn(int client, int args)
 {
-
-	//Command !respawn
-	if(IsBuildTime() || IsPrepTime()) {
-		CS_RespawnPlayer(client);
-		return Plugin_Handled;
+	if(IsClientInGame(client) && client > 0)
+	{
+		//Command !respawn
+		if(IsBuildTime() || IsPrepTime()) {
+			CS_RespawnPlayer(client);
+			return Plugin_Handled;
+		}
+		
+		CPrintToChat(client, "%s%T", Prefix, "Respawn", client);
+		return Plugin_Continue;
 	}
-	
-	CPrintToChat(client, "%s%T", Prefix, "Respawn", client);
-	return Plugin_Continue;
 
 }
 
@@ -61,7 +63,7 @@ public void Respawn_OnPlayerDeath(int client)
 
 public Action Respawn_Player(Handle tmr, any client)
 {
-	if(!IsPlayerAlive(client))
+	if(IsClientInGame(client) && !IsPlayerAlive(client))
 	{
 		if(!g_RoundEnd && client != 0 && IsClientInGame(client)) {
 			if(GetClientTeam(client) == ZOMBIES)

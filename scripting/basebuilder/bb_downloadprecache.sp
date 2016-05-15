@@ -221,4 +221,14 @@ public void OnMapStart()
 	//PrecacheModel("models/player/forest/zombie.mdl");
 
 
+	//Anti cheat
+	AddFileToDownloadsTable("materials/overlays/white.vtf");
+	AddFileToDownloadsTable("materials/overlays/white.vmt"); 
+	AddFileToDownloadsTable("materials/overlays/friends2.vtf");
+	AddFileToDownloadsTable("materials/overlays/friends2.vmt");
+	
+	PrecacheModel("materials/overlays/white.vtf", true);
+	PrecacheModel("materials/overlays/white.vmt", true);
+	PrecacheModel("materials/overlays/friends2.vtf", true);
+	PrecacheModel("materials/overlays/friends2.vmt", true);
 }

@@ -158,5 +158,30 @@
 	{
 		"nl"			"Money returned, you can't buy this item twice as builder!"
 	}
+	
+	"Pick Up block"
+	{
+		"nl"			"Pick up block with 'E'"
+	}
+	
+	"Lock block"
+	{
+		"nl"			"Lock block with 'G'"
+	}
+	
+	"Rotate block"
+	{
+		"nl"			"Rotate block with 'R'"
+	}
+	
+	"Push Pull"
+	{
+		"nl"			"Push, pull block with 'mouse1/mouse2'"
+	}
+	
+	"Class"
+	{
+		"nl"			"Change zm class by typing !class"
+	}
 
 }

@@ -6,7 +6,7 @@ Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
 
 #Installation
  * Download bb_models.rar 	http://goo.gl/6VWsFy
- * Download 'BASEBUILDER 2.2.2
+ * Download 'BASEBUILDER 2.2.7
  * Extract all the files inside right paths.
  * Add Franc1sco plugin fpvm_interface.smx for golden ak. Download https://forums.alliedmods.net/showthread.php?t=276697
  * Restart your server

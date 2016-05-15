@@ -3,6 +3,11 @@ public void OldBlocks_OnPrepTimeStart()
 	RemoveOldBlocks(1, "prep");	
 }
 
+public void OldBlock_OnPlayerDisconnect(int client)
+{
+	RemoveOldBlocks(client, "disconnect");
+}
+
 public void OldBlocks_OnPlayerDeath(int client)
 {
 	if(IsClientInGame(client) && !IsFakeClient(client)) 
@@ -34,6 +39,26 @@ public void OldBlocks_OnPlayerDeath(int client)
 
 public void RemoveOldBlocks(int client, char type[10])
 {
+	
+	if(StrEqual(type, "disconnect")) {
+		int ent = 0;
+		while ((ent = FindEntityByClassname(ent, "prop_dynamic")) != INVALID_ENT_REFERENCE) {
+			if(IsValidEntity(ent) && ent != -1) {
+				char entname[50];
+				Entity_GetName(ent, entname, sizeof(entname));
+				
+				char entglobaname[50];
+				Entity_GetGlobalName(ent, entglobaname, sizeof(entglobaname));
+				
+				int entity = StringToInt(entname);
+				int entitygn = StringToInt(entglobaname);
+				
+				if(entity == client || entitygn == client) {
+					Entity_Kill(ent);
+				}
+			}
+		}	
+	}
 	
 	if(g_iRemoveNotUsedBlocks == 1) {
 	

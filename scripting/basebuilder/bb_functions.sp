@@ -25,7 +25,7 @@ public void BaseBuilder_OnPrepTimeEnd()
 {
 	Sounds_OnPrepTimeEnd();
 	Respawn_OnPrepTimeEnd();
-
+	Weapons_OnPrepTimeEnd();
 }
 
 public Action BB_PlayerDeath(Handle event, const char[] name, bool dontBroadcast)
@@ -37,6 +37,7 @@ public Action BB_PlayerDeath(Handle event, const char[] name, bool dontBroadcast
 	OldBlocks_OnPlayerDeath(client);
 	Respawn_OnPlayerDeath(client);
 	Money_OnPlayerDeath(attacker);
+	Party_OnPlayerDeath(client);
 
 }
 
@@ -84,7 +85,11 @@ public void OnClientPutInServer(int client)
 public void OnClientDisconnect(int client) 
 {
 	if(client != 0)
+	{
 		Party_OnClientDisconnect(client);
+		OverLays_OnClientDisconnect(client);
+		OldBlock_OnPlayerDisconnect(client);
+	}
 	
 }
 

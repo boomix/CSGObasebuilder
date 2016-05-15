@@ -9,6 +9,7 @@ public Action Party_OnClientPutInServer(int client)
 {
 	g_bIsInParty[client] = false;
 	g_iInPartyWith[client] = -1;
+	g_iDecalEntity[client] = -1;
 }
 
 public void Party_RoundStart()
@@ -20,12 +21,23 @@ public void Party_RoundStart()
 		g_bIsInParty[client2] = false;
 		g_iInPartyWith[i] = -1;
 		g_iInPartyWith[client2] = -1;
+		g_iDecalEntity[i] = -1;
+		
+		//Remove decals from heads
+		RemoveDecalAbovePlayer(i);
 	}
+}
+
+public void Party_OnPlayerDeath(int client)
+{
+	RemoveDecalAbovePlayer(client);	
 }
 
 public void Party_OnClientDisconnect(int client)
 {
 	int client2 = g_iInPartyWith[client];
+	
+	RemoveDecalAbovePlayer(client);
 	
 	if(client >= 1 && !IsFakeClient(client) && client2 >= 1 && !IsFakeClient(client2)) {
 		CPrintToChat(client2, "%s%T", Prefix, "Party left game", client2);
@@ -33,6 +45,7 @@ public void Party_OnClientDisconnect(int client)
 		g_bIsInParty[client2] = false;
 		g_iInPartyWith[client] = -1;
 		g_iInPartyWith[client2] = -1;
+		g_iDecalEntity[client] = -1;
 	}
 }
 
@@ -168,12 +181,42 @@ public Action CMD_Accept(int client, int args)
 		CPrintToChat(client, "%s%T", Prefix, "Party success", client, client2_username);
 		CPrintToChat(client2, "%s%T", Prefix, "Party success2", client2, client_username);
 		
+		//Create decals over player heads, that they see with who they are in party
+		CreateTimer(1.0, Timer_SpawnSprite, client);
+		CreateTimer(1.0, Timer_SpawnSprite, client2);
+		
+		
 	} else 
 		CPrintToChat(client, "%s%T", Prefix, "Party writes accept without invite", client);
 	
 	return Plugin_Handled;
 
 }
+
+public Action Timer_SpawnSprite(Handle timer, any client)
+{
+	if(IsClientInGame(client) && IsPlayerAlive(client) && !IsFakeClient(client))
+	{
+		g_iDecalEntity[client] = SpawnDecalAbovePlayer(client, "materials/overlays/friends2.vmt");
+		char Gname[20];
+		IntToString(g_iInPartyWith[client], Gname, sizeof(Gname));
+		Entity_SetGlobalName(g_iDecalEntity[client], Gname);
+		SDKHook(g_iDecalEntity[client], SDKHook_SetTransmit, ShowFriendOverlay);	
+	}
+}
+
+public Action ShowFriendOverlay(int ent, int client)
+{
+	char Gname[20];
+	Entity_GetGlobalName(ent, Gname, sizeof(Gname));
+	int client2 = StringToInt(Gname);
+	
+	if(client2 == client)
+		return Plugin_Continue;
+	else
+		return Plugin_Handled;
+}
+
 
 public Action CMD_StopParty(int client, int args)
 {
@@ -191,4 +234,80 @@ public Action CMD_StopParty(int client, int args)
 	}	
 	
 	return Plugin_Handled;
+}
+
+
+//DECAL FUNCTIONS
+
+int SpawnDecalAbovePlayer(int client, const char sDecal[PLATFORM_MAX_PATH])
+{
+	if(!IsClientInGame(client) || !IsPlayerAlive(client) || GetClientTeam(client) < 2)
+		return -1;
+	
+	int iEnt = CreateEntityByName("env_sprite");
+	if(iEnt == -1)
+		return -1;
+	
+	SetEntityModel(iEnt, sDecal);
+	DispatchKeyValue(iEnt, "GlowProxySize", "1");
+	DispatchKeyValue(iEnt, "rendercolor", "118 147 163");
+	DispatchKeyValue(iEnt, "renderamt", "140");
+	DispatchKeyValue(iEnt, "rendermode", "5");
+	DispatchKeyValue(iEnt, "renderfx", "0");
+	DispatchKeyValueFloat(iEnt, "framerate", 15.0);
+	DispatchKeyValueFloat(iEnt, "scale", 0.1);
+	char sBuffer[32];
+	Format(sBuffer, sizeof(sBuffer), "1337client_%d", iEnt);
+	DispatchKeyValue(client, "targetname", sBuffer);
+	float fMin[3] = {-50.0, -50.0, 0.0};
+	float fMax[3] = {50.0, 50.0, 100.0};
+	SetEntPropVector(iEnt, Prop_Send, "m_vecMins", fMin);
+	SetEntPropVector(iEnt, Prop_Send, "m_vecMaxs", fMax);
+	SetEntProp(iEnt, Prop_Send, "m_nSolidType", 2);
+	int iEffects = GetEntProp(iEnt, Prop_Send, "m_fEffects");
+	SetEntProp(iEnt, Prop_Send, "m_fEffects", (iEffects | 32));
+	DispatchSpawn(iEnt);
+	ActivateEntity(iEnt);
+	float fOrigin[3];
+	GetClientEyePosition(client, fOrigin);
+	
+	// Place 30 units above player's head.
+	fOrigin[2] += 30.0;
+	
+	TeleportEntity(iEnt, fOrigin, NULL_VECTOR, NULL_VECTOR);
+	SetVariantString(sBuffer);
+	AcceptEntityInput(iEnt, "SetParent");
+	
+	return iEnt;
+}
+
+bool RemoveDecalAbovePlayer(int client)
+{
+	if(!IsClientInGame(client))
+		return false;
+	
+	char sBuffer[32];
+	GetEntPropString(client, Prop_Data, "m_iName", sBuffer, sizeof(sBuffer));
+	
+	// That player doesn't have a sprite above his head, which has been spawned with the above stock.
+	if(StrContains(sBuffer, "1337client_") != 0)
+	{
+		DispatchKeyValue(client, "targetname", "");
+		return false;
+	}
+	
+	int iEnt = StringToInt(sBuffer[11]);
+	if(iEnt <= 0 || !IsValidEntity(iEnt) || !IsValidEdict(iEnt))
+		return false;
+	
+	GetEdictClassname(iEnt, sBuffer, sizeof(sBuffer));
+	if(!StrEqual(sBuffer, "env_sprite"))
+	{
+		DispatchKeyValue(client, "targetname", "");
+		return false;
+	}
+	
+	AcceptEntityInput(iEnt, "Kill");
+	DispatchKeyValue(client, "targetname", "");
+	return true;
 }

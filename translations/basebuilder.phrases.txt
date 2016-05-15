@@ -162,5 +162,30 @@
 	{
 		"en"			"Sorry, you can't select VIP class!"
 	}
+	
+	"Pick Up block"
+	{
+		"en"			"Pick up block with 'E'"
+	}
+	
+	"Lock block"
+	{
+		"en"			"Lock block with 'G'"
+	}
+	
+	"Rotate block"
+	{
+		"en"			"Rotate block with 'R'"
+	}
+	
+	"Push Pull"
+	{
+		"en"			"Push, pull block with 'mouse1/mouse2'"
+	}
+	
+	"Class"
+	{
+		"en"			"Change zm class by typing !class"
+	}
 
 }

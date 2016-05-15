@@ -143,12 +143,37 @@
 
 	"Money returned"
 	{
-		"en"			"Kasa zwrocona, nie mozesz kupic tego dwa razy !"
+		"pl"			"Kasa zwrocona, nie mozesz kupic tego dwa razy !"
 	}
 
 	"VIP class fail change"
 	{
-		"en"			"Wybacz, ale nie moýesz wybraã klasy VIP"
+		"pl"			"Wybacz, ale nie moýesz wybraã klasy VIP"
+	}
+	
+	"Pick Up block"
+	{
+		"pl"			"Przytrzymaj 'E' aby podnieúã klocek"
+	}
+	
+	"Lock block"
+	{
+		"pl"			"'G' kolorujesz klocek by nikt go nie zabraù"
+	}
+	
+	"Rotate block"
+	{
+		"pl"			"'R' obracasz klocek"
+	}
+	
+	"Push Pull"
+	{
+		"pl"			"Lewym/Prawym przyciskiem oddalasz/przybliýasz"
+	}
+	
+	"Class"
+	{
+		"pl"			"!class by wybraã klasæ zombi"
 	}
 
 }

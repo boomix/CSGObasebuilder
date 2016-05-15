@@ -164,7 +164,8 @@ public void SetPlayerArms(int client, char[] arms)
 
 public Action Give_Knife(Handle tmr, any client)
 {
-	GivePlayerItem(client, "weapon_knife");	
+	if(IsClientInGame(client))
+		GivePlayerItem(client, "weapon_knife");	
 }
 
 public bool HasPlayerFlags(int client, char flags[40])

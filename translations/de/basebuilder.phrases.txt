@@ -157,4 +157,29 @@
 	{
 		"de"			"Geld zurückerstattet, du kannst dieses Item nur einmal als Builder kaufen!"
 	}
+	
+	"Pick Up block"
+	{
+		"de"			"Pick up block with 'E'"
+	}
+	
+	"Lock block"
+	{
+		"de"			"Lock block with 'G'"
+	}
+	
+	"Rotate block"
+	{
+		"de"			"Rotate block with 'R'"
+	}
+	
+	"Push Pull"
+	{
+		"de"			"Push, pull block with 'mouse1/mouse2'"
+	}
+	
+	"Class"
+	{
+		"de"			"Change zm class by typing !class"
+	}
 }

@@ -47,7 +47,7 @@ EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.6",
+#include "basebuilder/bb_overlays.sp"
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,
@@ -159,6 +159,7 @@ public void OnConfigsExecuted()
 	
 	FixPrefix();
 	GetTeleportCoords();
+	OverLays_OnCofigsExecuted();
 
 }
 

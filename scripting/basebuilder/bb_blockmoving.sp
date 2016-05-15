@@ -55,44 +55,50 @@ public void FirstTimePress(int client)
 	
 	if(IsValidEntity(g_iPlayerSelectedBlock[client]) && g_iPlayerSelectedBlock[client] != -1) {
 		
-		if(GetBlockOwner(g_iPlayerSelectedBlock[client]) == 0) {
-			
-			g_OnceStopped[client] = true;
-			
-			if(!IsValidEntity(g_iPlayerNewEntity[client]) || g_iPlayerNewEntity[client] <= 0)
-				g_iPlayerNewEntity[client] = CreateEntityByName("prop_dynamic");
-			
-			float TeleportNewEntityOrg[3];
-			GetAimOrigin(client, TeleportNewEntityOrg);
-			TeleportEntity(g_iPlayerNewEntity[client], TeleportNewEntityOrg, NULL_VECTOR, NULL_VECTOR);
-			
-			//SetEntityModel(g_iPlayerNewEntity[client], "models/player/kuristaja/zombies/classic/classic.mdl");
-			
-			SetVariantString("!activator");
-			AcceptEntityInput(g_iPlayerSelectedBlock[client], "SetParent", g_iPlayerNewEntity[client], g_iPlayerSelectedBlock[client], 0);
-			
-			//SetVariantString("!activator");
-			//AcceptEntityInput(g_iPlayerNewEntity[client], "SetParent", g_iPlayerNewEntity[client], g_iPlayerNewEntity[client], 0);
+		char classname[150];
+		GetEntityClassname(g_iPlayerSelectedBlock[client], classname, sizeof(classname));
 		
-			//Get distance between player and block
-			float posent[3];
-			float playerpos[3];
-			GetClientEyePosition(client, playerpos);
-			GetEntPropVector(g_iPlayerNewEntity[client], Prop_Send, "m_vecOrigin", posent);
-			g_fPlayerSelectedBlockDistance[client] =  GetVectorDistance(playerpos, posent);
+		if(!StrEqual(classname, "weaponworldmodel"))
+		{
+			if(GetBlockOwner(g_iPlayerSelectedBlock[client]) == 0) {
+				
+				g_OnceStopped[client] = true;
+				
+				if(!IsValidEntity(g_iPlayerNewEntity[client]) || g_iPlayerNewEntity[client] <= 0)
+					g_iPlayerNewEntity[client] = CreateEntityByName("prop_dynamic");
+				
+				float TeleportNewEntityOrg[3];
+				GetAimOrigin(client, TeleportNewEntityOrg);
+				TeleportEntity(g_iPlayerNewEntity[client], TeleportNewEntityOrg, NULL_VECTOR, NULL_VECTOR);
+				
+				//SetEntityModel(g_iPlayerNewEntity[client], "models/player/kuristaja/zombies/classic/classic.mdl");
+				
+				SetVariantString("!activator");
+				AcceptEntityInput(g_iPlayerSelectedBlock[client], "SetParent", g_iPlayerNewEntity[client], g_iPlayerSelectedBlock[client], 0);
+				
+				//SetVariantString("!activator");
+				//AcceptEntityInput(g_iPlayerNewEntity[client], "SetParent", g_iPlayerNewEntity[client], g_iPlayerNewEntity[client], 0);
 			
-						
-			//Get the prop closer if it's to far away
-			if (g_fPlayerSelectedBlockDistance[client] > 250.0)
-				g_fPlayerSelectedBlockDistance[client] = 250.0;
-			
-			ColorBlock(client, false);
-			Sounds_TookBlock(client);
-			
-			SetBlockOwner(g_iPlayerSelectedBlock[client], client);
-			SetLastMover(g_iPlayerSelectedBlock[client], client);
-
+				//Get distance between player and block
+				float posent[3];
+				float playerpos[3];
+				GetClientEyePosition(client, playerpos);
+				GetEntPropVector(g_iPlayerNewEntity[client], Prop_Send, "m_vecOrigin", posent);
+				g_fPlayerSelectedBlockDistance[client] =  GetVectorDistance(playerpos, posent);
+				
+							
+				//Get the prop closer if it's to far away
+				if (g_fPlayerSelectedBlockDistance[client] > 250.0)
+					g_fPlayerSelectedBlockDistance[client] = 250.0;
+				
+				ColorBlock(client, false);
+				Sounds_TookBlock(client);
+				
+				SetBlockOwner(g_iPlayerSelectedBlock[client], client);
+				SetLastMover(g_iPlayerSelectedBlock[client], client);
 	
+		
+			}
 		}
 	}
 	
