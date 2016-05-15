@@ -1,5 +1,7 @@
-# CS:GO basebuilder v2
+# CS:GO basebuilder v2.2.7
 CS:GO basebuilder - zombie mod. 
+
+NEW 4 MATERIALS FOR VERSION 2.2.7+ - https://www.dropbox.com/s/jpi9hhia9yrghnr/overlays.7z?dl=1
 
 Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
  
