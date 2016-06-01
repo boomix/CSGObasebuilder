@@ -42,12 +42,13 @@
 #include "basebuilder/bb_nothisbase.sp"
 #include "basebuilder/bb_laddergravity.sp"
 #include "basebuilder/bb_randomspawnangle.sp"
+#include "basebuilder/bb_overlays.sp"
 
 EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-#include "basebuilder/bb_overlays.sp"
+	name = "Basebuilder 2.2.8",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,

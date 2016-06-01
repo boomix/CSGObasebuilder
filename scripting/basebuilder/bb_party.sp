@@ -10,6 +10,7 @@ public Action Party_OnClientPutInServer(int client)
 	g_bIsInParty[client] = false;
 	g_iInPartyWith[client] = -1;
 	g_iDecalEntity[client] = -1;
+	g_PartyInviter[client] = false;
 }
 
 public void Party_RoundStart()
@@ -108,6 +109,8 @@ public int MenuHandler_PartyMenu(Menu menu, MenuAction action, int client, int i
 					g_iInPartyWith[client] = client2;
 					g_iInPartyWith[client2] = client;
 					
+					g_PartyInviter[client] = true;
+					
 					CreateTimer(20.0, ResetInvite, client);
 					CreateTimer(20.0, ResetInvite, client2);
 				} else {
@@ -128,6 +131,7 @@ public Action ResetInvite(Handle tmr, any client)
 	if(!g_bIsInParty[client])
 	{
 		g_iInPartyWith[client] = -1;
+		g_PartyInviter[client] = false;
 	}
 }
 
@@ -138,6 +142,14 @@ public Action CMD_Accept(int client, int args)
 
 	if(g_iInPartyWith[client] > 0)
 	{
+		
+		if(g_PartyInviter[client])
+		{
+			CPrintToChat(client, "Don't accept when you invite someone!");
+			return Plugin_Handled;	
+		}
+		
+		
 		if(!IsClientInGame(client2))
 		{
 			CPrintToChat(client, "%s%T", Prefix, "Party not found", client);
@@ -230,6 +242,9 @@ public Action CMD_StopParty(int client, int args)
 		
 		CPrintToChat(client, "%s%T", Prefix, "Party left", client);
 		CPrintToChat(client2, "%s%T", Prefix, "Party left2", client2);
+		
+		RemoveDecalAbovePlayer(client);
+		RemoveDecalAbovePlayer(client2);
 
 	}	
 	

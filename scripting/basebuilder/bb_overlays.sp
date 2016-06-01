@@ -13,6 +13,24 @@ public void OverLays_OnCofigsExecuted()
 			g_hTimer_Query[i] = CreateTimer(1.0, Timer_QueryClient, i);	
 }
 
+public void Overlay_OnGameFrame()
+{
+	LoopAllPlayers(i) {
+		if(b_PlayerStuck[i]) {
+			
+			float ang[3];
+			ang[0] = 0.0;
+			ang[1] = 0.0;
+			ang[2] = 0.0;
+		
+			TeleportEntity(i, NULL_VECTOR, ang, NULL_VECTOR);
+			PrintToChat(i, "\x1 Please set:\x3 cl_showpos 0");
+			
+		}
+	}
+			
+}
+
 public void ConVar_QueryClient(QueryCookie cookie, int client, ConVarQueryResult result, const char[] cvarName, const char[] cvarValue)
 {
 	if(IsClientInGame(client))
@@ -21,11 +39,14 @@ public void ConVar_QueryClient(QueryCookie cookie, int client, ConVarQueryResult
 		{
 			bool bCurrent = StringToInt(cvarValue) ? true : false;
 			
-			if(bCurrent)
-				Overlay(client, "overlays/white");
-			else
-				Overlay(client, "");
-			
+			if(bCurrent) {
+				b_PlayerStuck[client] = true;
+				SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", 0.0);
+			}
+			else {
+				b_PlayerStuck[client] = false;
+				SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", 1.0);
+			}
 		}
 		g_hTimer_Query[client] = CreateTimer(1.0, Timer_QueryClient, client);
 	}
@@ -46,17 +67,3 @@ public Action Timer_QueryClient(Handle timer, any client)
 
 	return Plugin_Continue;
 }
-
-
-
-void Overlay(int client, char[] material = "")
-{
-    if (IsClientInGame(client) && !IsFakeClient(client))
-    {
-        int iFlags = GetCommandFlags("r_screenoverlay");
-        SetCommandFlags("r_screenoverlay", iFlags & ~FCVAR_CHEAT);
-        if (!StrEqual(material, "")) ClientCommand(client, "r_screenoverlay \"%s\"", material);
-        else ClientCommand(client, "r_screenoverlay \"\"");
-        SetCommandFlags("r_screenoverlay", iFlags);
-    }
-}  

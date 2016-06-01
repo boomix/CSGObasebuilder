@@ -113,5 +113,5 @@ public void OnGameFrame()
 {
 	NotHisBase_OnGameFrame();
 	LadderGravity_OnGameFrame();
-	
+	Overlay_OnGameFrame();
 }
