@@ -1,14 +1,14 @@
-# CS:GO basebuilder v2.2.7
+# CS:GO basebuilder v2.2.8
 CS:GO basebuilder - zombie mod. 
 
-NEW 4 MATERIALS FOR VERSION 2.2.7+ - https://www.dropbox.com/s/jpi9hhia9yrghnr/overlays.7z?dl=1
+NEW 4 MATERIALS FOR VERSION 2.2.8+ - https://www.dropbox.com/s/jpi9hhia9yrghnr/overlays.7z?dl=1
 
 Sourcemod topic: https://forums.alliedmods.net/showthread.php?t=277538
  
 
 #Installation
  * Download bb_models.rar 	http://goo.gl/6VWsFy
- * Download 'BASEBUILDER 2.2.7
+ * Download 'BASEBUILDER 2.2.8
  * Extract all the files inside right paths.
  * Add Franc1sco plugin fpvm_interface.smx for golden ak. Download https://forums.alliedmods.net/showthread.php?t=276697
  * Restart your server
