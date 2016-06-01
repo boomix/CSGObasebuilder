@@ -145,7 +145,6 @@ public Action CMD_Accept(int client, int args)
 		
 		if(g_PartyInviter[client])
 		{
-			CPrintToChat(client, "Don't accept when you invite someone!");
 			return Plugin_Handled;	
 		}
 		
