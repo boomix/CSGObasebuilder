@@ -25,6 +25,7 @@ float g_fBuildTime;
 float g_fPrepTime;
 float CTSpawnOrg[3];
 float CTSpawnAng[3];
+float PlayerLastSpeed[MAXPLAYERS + 1];
 
 char g_sBasebuilderConfig[PLATFORM_MAX_PATH];
 char g_sBasebuilderConfig2[PLATFORM_MAX_PATH];

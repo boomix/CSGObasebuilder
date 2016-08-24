@@ -137,6 +137,8 @@ void SetPlayerAsZombie(int client)
 	SetEntityModel(client, zmModel);
 	CPrintToChat(client, "%s%T", Prefix, "New zombie", client, zmName);
 	
+	PlayerLastSpeed[client] = fZmSpeed;
+	
 	delete kvZombies;
 
 
@@ -148,6 +150,7 @@ void SetPlayerAsBuilder(int client)
 	SetPlayerArms(client, "models/weapons/t_arms_professional.mdl");
 	SetEntityHealth(client, 100);
 	SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", 1.0);
+	PlayerLastSpeed[client] = 1.0;
 }
 
 

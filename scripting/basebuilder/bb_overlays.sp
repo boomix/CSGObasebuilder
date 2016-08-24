@@ -45,7 +45,7 @@ public void ConVar_QueryClient(QueryCookie cookie, int client, ConVarQueryResult
 			}
 			else {
 				b_PlayerStuck[client] = false;
-				SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", 1.0);
+				SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", PlayerLastSpeed[client]);
 			}
 		}
 		g_hTimer_Query[client] = CreateTimer(1.0, Timer_QueryClient, client);

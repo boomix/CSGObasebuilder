@@ -19,9 +19,15 @@ public void LoadCvars()
 	Handle sv_infinite_ammo = FindConVar("sv_infinite_ammo");
 	Handle mp_force_assign_teams = FindConVar("mp_force_assign_teams");
 	Handle mp_force_pick_time = FindConVar("mp_force_pick_time");
+	//Handle mp_playercashawards = FindConVar("mp_playercashawards");
+	Handle mp_teamcashawards = FindConVar("mp_teamcashawards");
+
 	
 	SetConVarInt(mp_startmoney, 0);
 	SetConVarInt(mp_force_pick_time, 0);
+	//SetConVarInt(mp_playercashawards, 0);
+	SetConVarInt(mp_teamcashawards, 0);
+	
 	SetConVarInt(mp_force_assign_teams, 1);
 	SetConVarInt(bot_quota, 0);
 	SetConVarString(bot_quota_mode, "none");
@@ -39,51 +45,20 @@ public void LoadCvars()
 	SetConVarInt(sv_infinite_ammo, 2);
 	
 	//Money setup
-	Handle cash_player_bomb_defused = FindConVar("cash_player_bomb_defused");			
-	Handle cash_player_bomb_planted = FindConVar("cash_player_bomb_planted");
-	Handle cash_player_damage_hostage	 = FindConVar("cash_player_damage_hostage");
-	Handle cash_player_interact_with_hostage = FindConVar("cash_player_interact_with_hostage");
-	Handle cash_player_killed_enemy_default = FindConVar("cash_player_killed_enemy_default");
+	//Handle cash_player_killed_enemy_default = FindConVar("cash_player_killed_enemy_default");
 	Handle cash_player_killed_enemy_factor = FindConVar("cash_player_killed_enemy_factor");
 	Handle cash_player_killed_teammate = FindConVar("cash_player_killed_teammate");
-	Handle cash_player_rescued_hostage = FindConVar("cash_player_rescued_hostage");
-	Handle cash_team_elimination_bomb_map = FindConVar("cash_team_elimination_bomb_map");
-	Handle cash_team_elimination_hostage_map_t = FindConVar("cash_team_elimination_hostage_map_t");
-	Handle cash_team_elimination_hostage_map_ct = FindConVar("cash_team_elimination_hostage_map_ct");
-	Handle cash_team_hostage_alive = FindConVar("cash_team_hostage_alive");
-	Handle cash_team_hostage_interaction = FindConVar("cash_team_hostage_interaction");
 	Handle cash_team_loser_bonus = FindConVar("cash_team_loser_bonus");
 	Handle cash_team_loser_bonus_consecutive_rounds = FindConVar("cash_team_loser_bonus_consecutive_rounds");
-	Handle cash_team_planted_bomb_but_defused = FindConVar("cash_team_planted_bomb_but_defused");
-	Handle cash_team_rescued_hostage = FindConVar("cash_team_rescued_hostage");
-	Handle cash_team_terrorist_win_bomb = FindConVar("cash_team_terrorist_win_bomb");
-	Handle cash_team_win_by_defusing_bomb = FindConVar("cash_team_win_by_defusing_bomb");
-	Handle cash_team_win_by_hostage_rescue = FindConVar("cash_team_win_by_hostage_rescue");
-	Handle cash_team_win_by_time_running_out_hostage = FindConVar("cash_team_win_by_time_running_out_hostage");
-	Handle cash_team_win_by_time_running_out_bomb = FindConVar("cash_team_win_by_time_running_out_bomb");
+	//Handle cash_team_win_by_time_running_out_bomb = FindConVar("cash_team_win_by_time_running_out_bomb");
 
-	SetConVarInt(cash_player_bomb_defused, 0);
-	SetConVarInt(cash_player_bomb_planted, 0);
-	SetConVarInt(cash_player_damage_hostage, 0);
-	SetConVarInt(cash_player_interact_with_hostage, 0);
-	SetConVarInt(cash_player_killed_enemy_default, 0);
+
+	//SetConVarInt(cash_player_killed_enemy_default, 0);
 	SetConVarFloat(cash_player_killed_enemy_factor, 0.0);
 	SetConVarInt(cash_player_killed_teammate, 0);
-	SetConVarInt(cash_player_interact_with_hostage, 0);
-	SetConVarInt(cash_player_rescued_hostage, 0);
-	SetConVarInt(cash_team_elimination_bomb_map, 0);
-	SetConVarInt(cash_team_elimination_hostage_map_t, 0);
-	SetConVarInt(cash_team_elimination_hostage_map_ct, 0);
-	SetConVarInt(cash_team_hostage_alive, 0);
-	SetConVarInt(cash_team_hostage_interaction, 0);
 	SetConVarInt(cash_team_loser_bonus, 0);
 	SetConVarInt(cash_team_loser_bonus_consecutive_rounds, 0);
-	SetConVarInt(cash_team_planted_bomb_but_defused, 0);
-	SetConVarInt(cash_team_rescued_hostage, 0);
-	SetConVarInt(cash_team_terrorist_win_bomb, 0);
-	SetConVarInt(cash_team_win_by_hostage_rescue, 0);
-	SetConVarInt(cash_team_win_by_defusing_bomb, 0);
-	SetConVarInt(cash_team_win_by_time_running_out_hostage, 0);
-	SetConVarInt(cash_team_win_by_time_running_out_bomb, 0);
+	//SetConVarInt(cash_team_win_by_time_running_out_bomb, 0);
+	
 	
 }

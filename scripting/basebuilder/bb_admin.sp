@@ -91,3 +91,10 @@ public int MenuHandler_PlayerEditSave(Menu menu, MenuAction action, int client, 
 		}
 	}
 }
+
+void SetClipAmmo(int weapon, int ammo)
+{
+	SetEntProp(weapon, Prop_Send, "m_iClip1", ammo);
+	SetEntProp(weapon, Prop_Send, "m_iClip2", ammo);
+	SetEntProp(weapon, Prop_Send, "m_iPrimaryReserveAmmoCount", ammo);
+}

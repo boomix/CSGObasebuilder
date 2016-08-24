@@ -25,9 +25,8 @@ public Action CMD_Respawn(int client, int args)
 		}
 		
 		CPrintToChat(client, "%s%T", Prefix, "Respawn", client);
-		return Plugin_Continue;
 	}
-
+	return Plugin_Continue;
 }
 
 public void Respawn_OnPrepTimeStart()
