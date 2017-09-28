@@ -105,16 +105,6 @@ public void OnPluginStart()
 	
 	//Translation
 	LoadTranslations("basebuilder.phrases");
-	
-	//Load up configs
-	kvMainCfg = new KeyValues("bb_config");
-	kvZombies = new KeyValues("bb_zombies");
-	kvZmShop =  new KeyValues("zm_shop");
-	kvCtShop =  new KeyValues("ct_shop");
-	kvZombies.ImportFromFile(g_sBasebuilderConfig2);
-	kvMainCfg.ImportFromFile(g_sBasebuilderConfig);
-	kvZmShop.ImportFromFile(g_sBasebuilderConfig3);
-	kvCtShop.ImportFromFile(g_sBasebuilderConfig4);
 
 }
 
@@ -122,6 +112,16 @@ public void OnConfigsExecuted()
 {
 
 	LoadCvars();
+	
+	//Load up configs
+	kvMainCfg = new KeyValues("bb_config");
+	kvZombies = new KeyValues("bb_zombies");
+	kvZmShop =  new KeyValues("zm_shop");
+	kvCtShop =  new KeyValues("ct_shop");
+	kvMainCfg.ImportFromFile(g_sBasebuilderConfig);
+	kvZombies.ImportFromFile(g_sBasebuilderConfig2);
+	kvZmShop.ImportFromFile(g_sBasebuilderConfig3);
+	kvCtShop.ImportFromFile(g_sBasebuilderConfig4);
 	
 	if (!kvMainCfg.JumpToKey("config")) 
 		return;

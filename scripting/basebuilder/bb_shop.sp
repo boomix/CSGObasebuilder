@@ -13,7 +13,7 @@ public Action CMD_Shop(int client, int args)
 		Menu shopmenu = new Menu(MenuHandler_Shop);
 		SetMenuTitle(shopmenu, "Zombie shop");
 		
-	 
+	 	kvZmShop.Rewind();
 		if (!kvZmShop.GotoFirstSubKey())
 			return Plugin_Handled;
 	 
@@ -34,7 +34,8 @@ public Action CMD_Shop(int client, int args)
 	{
 		Menu shopmenu = new Menu(MenuHandler_Shop);
 		SetMenuTitle(shopmenu, "Builder shop");
-	 
+	 	
+	 	kvCtShop.Rewind();
 		if (!kvCtShop.GotoFirstSubKey())
 			return Plugin_Handled;
 	 
@@ -70,6 +71,7 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 			else if(GetClientTeam(client) == BUILDERS)
 				configfile = g_sBasebuilderConfig4;
 			
+			kvZmShop.Rewind();
 			if (!kvZmShop.JumpToKey(info)) 
 				return;
 				

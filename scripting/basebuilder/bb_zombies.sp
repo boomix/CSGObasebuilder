@@ -11,11 +11,10 @@ public Action CMD_ZMClass(int client, int args)
 
 		Menu zmmenu = new Menu(MenuHandler_ZombieClass);
 		SetMenuTitle(zmmenu, "Zombie class");
-	 
+	 	
+	 	kvZombies.Rewind();
 		if (!kvZombies.GotoFirstSubKey())
-		{
 			return Plugin_Handled;
-		}
 	 
 		char ClassID[10];
 		char name[150];
@@ -46,6 +45,7 @@ public int MenuHandler_ZombieClass(Menu menu, MenuAction action, int client, int
 			int SelectedZMClass = StringToInt(info);
 			
 			//Check for VIP class
+			kvZombies.Rewind();
 			char s_SelectedClass[10];
 			IntToString(SelectedZMClass, s_SelectedClass, sizeof(s_SelectedClass));
 			if (!kvZombies.JumpToKey(s_SelectedClass)) return;
@@ -93,9 +93,14 @@ public void Zombies_PlayerSpawn(int client)
 void SetPlayerAsZombie(int client)
 {
 	
+	kvZombies.Rewind();
 	char clientclass[10];
 	IntToString(g_iClientClass[client], clientclass, sizeof(clientclass));
-	if (!kvZombies.JumpToKey(clientclass)) return;
+	if (!kvZombies.JumpToKey(clientclass)) 
+	{
+		PrintToServer("Class not found!");
+		return;		
+	}
 		
 	char zmName[100];
 	char zmGravity[10];
