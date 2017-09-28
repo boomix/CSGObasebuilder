@@ -1,9 +1,7 @@
 public Action CMD_AdminPanel(int client, int args)
 {
 	if(IsAdmin(client))
-	{
-		OpenBBAdminMenu(client);	
-	}
+		OpenBBAdminMenu(client);
 	
 	return Plugin_Handled;
 }
@@ -90,11 +88,4 @@ public int MenuHandler_PlayerEditSave(Menu menu, MenuAction action, int client, 
 			OpenBBAdminMenu(client);
 		}
 	}
-}
-
-void SetClipAmmo(int weapon, int ammo)
-{
-	SetEntProp(weapon, Prop_Send, "m_iClip1", ammo);
-	SetEntProp(weapon, Prop_Send, "m_iClip2", ammo);
-	SetEntProp(weapon, Prop_Send, "m_iPrimaryReserveAmmoCount", ammo);
 }

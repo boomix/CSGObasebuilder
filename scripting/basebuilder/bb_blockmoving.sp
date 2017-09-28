@@ -3,11 +3,13 @@ float 	g_fPlayerSelectedBlockDistance		[MAXPLAYERS + 1];
 int 	g_iPlayerSelectedBlock				[MAXPLAYERS + 1];
 int 	g_iPlayerPrevButtons				[MAXPLAYERS + 1];
 int 	g_iPlayerNewEntity					[MAXPLAYERS + 1];
+bool 	bTakenWithNoOwner					[MAXPLAYERS + 1];
 
 public void Blockmoving_OnClientPutInServer(int client)
 {
 	g_iPlayerNewEntity[client] = -1;
 	g_iPlayerSelectedBlock[client] = -1;
+	bTakenWithNoOwner[client] = false;
 }
 
 public void BlockMoving_PlayerSpawn(int client)
@@ -60,7 +62,12 @@ public void FirstTimePress(int client)
 		
 		if(!StrEqual(classname, "weaponworldmodel"))
 		{
-			if(GetBlockOwner(g_iPlayerSelectedBlock[client]) == 0) {
+			if(GetBlockOwner(g_iPlayerSelectedBlock[client]) == 0 || GetBlockOwner(g_iPlayerSelectedBlock[client]) == client) {
+				
+				if(GetBlockOwner(g_iPlayerSelectedBlock[client]) == 0)
+					bTakenWithNoOwner[client] = true;
+				else
+					bTakenWithNoOwner[client] = false;
 				
 				g_OnceStopped[client] = true;
 				
@@ -94,9 +101,10 @@ public void FirstTimePress(int client)
 				ColorBlock(client, false);
 				Sounds_TookBlock(client);
 				
+				//LockBlock(client);
 				SetBlockOwner(g_iPlayerSelectedBlock[client], client);
 				SetLastMover(g_iPlayerSelectedBlock[client], client);
-	
+				
 		
 			}
 		}
@@ -140,7 +148,11 @@ public void StoppedMovingBlock(int client)
 {
 	
 	if(IsValidEntity(g_iPlayerSelectedBlock[client])) {
-		ColorBlock(client, true);
+		if(bTakenWithNoOwner[client])
+			ColorBlock(client, true);
+		else
+			ColorBlock(client, false);
+			
 		Sounds_DropBlock(client);
 		
 		SetVariantString("!activator");
@@ -148,7 +160,10 @@ public void StoppedMovingBlock(int client)
 	}
 	
 	g_OnceStopped[client] = false;
-	SetBlockOwner(g_iPlayerSelectedBlock[client], 0);
+	if(bTakenWithNoOwner[client]) {
+		SetBlockOwner(g_iPlayerSelectedBlock[client], 0);
+		LockBlock(client, g_iPlayerSelectedBlock[client]);
+	}
 
 }
 
@@ -234,7 +249,7 @@ void ColorBlock(int client, bool reset)
 		
 		if (reset)
 			Entity_SetRenderColor(entity, 255, 255, 255, 255);
-		else Entity_SetRenderColor(entity, colorr[client], colorg[client], colorb[client], 250);
+		else Entity_SetRenderColor(entity, colorr[client], colorg[client], colorb[client], 255);
 	}
 	
 }
@@ -251,7 +266,7 @@ void RotateEntity(int client)
 			float angles[3];
 			GetEntPropVector(blocktorotate, Prop_Send, "m_angRotation", angles);
 			angles[0] += 0.0;
-			angles[1] += 90.0;
+			angles[1] += 45.0;
 			angles[2] += 0.0;
 			TeleportEntity(blocktorotate, NULL_VECTOR, angles, NULL_VECTOR);
 		
@@ -266,8 +281,20 @@ void RotateBlock(int entity)
 		float angles[3];
 		GetEntPropVector(entity, Prop_Send, "m_angRotation", angles);
 		angles[0] += 0.0;
-		angles[1] += 90.0;
+		angles[1] += 45.0;
 		angles[2] += 0.0;
 		TeleportEntity(entity, NULL_VECTOR, angles, NULL_VECTOR);
 	}
+}
+
+public Action CMD_DeleteBlock(int client, int args)
+{
+	if(IsAdmin(client))
+	{
+		int entity = GetTargetBlock(client);
+		if (entity != -1)
+			if(IsValidEntity(entity))
+				Entity_Kill(entity);
+	}	
+	return Plugin_Handled;
 }

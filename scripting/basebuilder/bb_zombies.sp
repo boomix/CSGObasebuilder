@@ -11,11 +11,8 @@ public Action CMD_ZMClass(int client, int args)
 
 		Menu zmmenu = new Menu(MenuHandler_ZombieClass);
 		SetMenuTitle(zmmenu, "Zombie class");
-		
-		KeyValues kv = CreateKeyValues("bb_zombies");
-		kv.ImportFromFile(g_sBasebuilderConfig2);
 	 
-		if (!kv.GotoFirstSubKey())
+		if (!kvZombies.GotoFirstSubKey())
 		{
 			return Plugin_Handled;
 		}
@@ -24,12 +21,11 @@ public Action CMD_ZMClass(int client, int args)
 		char name[150];
 		do
 		{
-			kv.GetSectionName(ClassID, sizeof(ClassID));
-			kv.GetString("name", name, sizeof(name));
+			kvZombies.GetSectionName(ClassID, sizeof(ClassID));
+			kvZombies.GetString("name", name, sizeof(name));
 			zmmenu.AddItem(ClassID, name);
-		} while (kv.GotoNextKey());
+		} while (kvZombies.GotoNextKey());
 	 
-		delete kv;
 		zmmenu.Display(client, 0);
 	}
 
@@ -50,17 +46,12 @@ public int MenuHandler_ZombieClass(Menu menu, MenuAction action, int client, int
 			int SelectedZMClass = StringToInt(info);
 			
 			//Check for VIP class
-			KeyValues kvZombiesVIP = CreateKeyValues("bb_zombies");
-
-			if(!kvZombiesVIP.ImportFromFile(g_sBasebuilderConfig2)) return;
 			char s_SelectedClass[10];
 			IntToString(SelectedZMClass, s_SelectedClass, sizeof(s_SelectedClass));
-			if (!kvZombiesVIP.JumpToKey(s_SelectedClass)) return;
+			if (!kvZombies.JumpToKey(s_SelectedClass)) return;
 
 			char flags[40] = "";
-			kvZombiesVIP.GetString("flags", flags, sizeof(flags));
-			
-			delete kvZombiesVIP;
+			kvZombies.GetString("flags", flags, sizeof(flags));
 			
 			if(StrEqual(flags, ""))
 			{
@@ -102,9 +93,6 @@ public void Zombies_PlayerSpawn(int client)
 void SetPlayerAsZombie(int client)
 {
 	
-	KeyValues kvZombies = CreateKeyValues("bb_zombies");
-
-	if(!kvZombies.ImportFromFile(g_sBasebuilderConfig2)) return;
 	char clientclass[10];
 	IntToString(g_iClientClass[client], clientclass, sizeof(clientclass));
 	if (!kvZombies.JumpToKey(clientclass)) return;
@@ -130,16 +118,18 @@ void SetPlayerAsZombie(int client)
 	fZmSpeed	 = StringToFloat(zmSpeed);
 	int iZmHealth = StringToInt(zmHeath);
 	
+	if(!IsModelPrecached(zmArms))
+		PrecacheModel(zmArms, true);
 	SetPlayerArms(client, zmArms);
 	SetEntityGravity(client, fZmGravity);
 	SetEntityHealth(client, iZmHealth);
 	SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", fZmSpeed);
+	if(!IsModelPrecached(zmModel))
+		PrecacheModel(zmModel, true);
 	SetEntityModel(client, zmModel);
 	CPrintToChat(client, "%s%T", Prefix, "New zombie", client, zmName);
 	
 	PlayerLastSpeed[client] = fZmSpeed;
-	
-	delete kvZombies;
 
 
 }

@@ -48,20 +48,18 @@ EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.2.9",
+	name = "Basebuilder 2.3.1",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,
-	url = "http://csgo.lol | http://zipcore.net/"
+	url = "http://steamcommunity.com/id/boomix69 | http://zipcore.net/"
 };
 
 public void OnPluginStart()
 {
 	g_Game = GetEngineVersion();
-	if(g_Game != Engine_CSGO && g_Game != Engine_CSS)
-	{
-		SetFailState("This plugin is for CSGO/CSS only.");	
-	}
+	if(g_Game != Engine_CSGO)
+		SetFailState("This plugin is for CS:GO only.");	
 	
 	//** 	Events	 **//
 	HookEvent("round_start", 	BB_RoundStart);
@@ -85,11 +83,13 @@ public void OnPluginStart()
 	RegConsoleCmd("sm_shop", 		CMD_Shop, 		"Open shop!");
 	RegConsoleCmd("sm_guns", 		CMD_Guns);
 	RegConsoleCmd("sm_bb", 			CMD_AdminPanel);
+	RegConsoleCmd("sm_deleteblock", CMD_DeleteBlock);
 	
 	
 	//Locking
 	AddCommandListener(BB_LockBlock, "drop");
 	AddCommandListener(BB_BlockKill, "kill");
+	AddCommandListener(BB_BlockKill, "explode");
 	AddCommandListener(BB_BlockTeamChange, "jointeam");
 	
 	BuildPath(Path_SM, g_sBasebuilderConfig, sizeof(g_sBasebuilderConfig), "configs/basebuilder/bb_main.cfg");
@@ -102,10 +102,19 @@ public void OnPluginStart()
 	NoFallDamage_OnPluginStart();
 	Party_OnPluginStart();
 	Grenades_OnPluginStart();
-	//NotHisBase_OnPluginStart();
 	
 	//Translation
 	LoadTranslations("basebuilder.phrases");
+	
+	//Load up configs
+	kvMainCfg = new KeyValues("bb_config");
+	kvZombies = new KeyValues("bb_zombies");
+	kvZmShop =  new KeyValues("zm_shop");
+	kvCtShop =  new KeyValues("ct_shop");
+	kvZombies.ImportFromFile(g_sBasebuilderConfig2);
+	kvMainCfg.ImportFromFile(g_sBasebuilderConfig);
+	kvZmShop.ImportFromFile(g_sBasebuilderConfig3);
+	kvCtShop.ImportFromFile(g_sBasebuilderConfig4);
 
 }
 
@@ -113,11 +122,9 @@ public void OnConfigsExecuted()
 {
 
 	LoadCvars();
-
-	KeyValues kvMainCfg = CreateKeyValues("bb_config");
-
-	if(!kvMainCfg.ImportFromFile(g_sBasebuilderConfig)) return;
-	if (!kvMainCfg.JumpToKey("config")) return;
+	
+	if (!kvMainCfg.JumpToKey("config")) 
+		return;
 		
 	char g_sBuildTime[10];
 	char g_sPrepTime[10];
@@ -127,18 +134,18 @@ public void OnConfigsExecuted()
 	char g_sRemoveBlockAfterDeath[10];
 	char g_sMoneyPerKill[10];
 	char g_sPushPlayersOfBlocks[10];
-	kvMainCfg.GetString("Buildtime", 			g_sBuildTime, 		sizeof(g_sBuildTime));
-	kvMainCfg.GetString("PrepTime", 			g_sPrepTime,		sizeof(g_sPrepTime));
-	kvMainCfg.GetString("BuildTimeMessage", 	g_sBuildTimeMsg,	sizeof(g_sBuildTimeMsg));
-	kvMainCfg.GetString("PrepTimeMessage", 		g_sPrepTimeMsg,		sizeof(g_sPrepTimeMsg));
-	kvMainCfg.GetString("ReleaseMessage", 		g_sReleaseMsg,		sizeof(g_sReleaseMsg));
-	kvMainCfg.GetString("Prefix", 				Prefix,				sizeof(Prefix));
-	kvMainCfg.GetString("RoundTime", 			g_sRoundTime, 		sizeof(g_sRoundTime));
-	kvMainCfg.GetString("MaxLocks", 			g_sMaxLocks, 		sizeof(g_sMaxLocks));
-	kvMainCfg.GetString("RemoveNotUsedBlocks", 	g_sRemoveNotUsedBlocks, sizeof(g_sRemoveNotUsedBlocks));
-	kvMainCfg.GetString("RemoveBlockAfterDeath", g_sRemoveBlockAfterDeath, sizeof(g_sRemoveBlockAfterDeath));
-	kvMainCfg.GetString("MoneyPerKill", 		g_sMoneyPerKill,	sizeof(g_sMoneyPerKill));
-	kvMainCfg.GetString("PushPlayersOfBlocks", 	g_sPushPlayersOfBlocks,	sizeof(g_sPushPlayersOfBlocks));
+	kvMainCfg.GetString("Buildtime", 			g_sBuildTime, 				sizeof(g_sBuildTime));
+	kvMainCfg.GetString("PrepTime", 			g_sPrepTime,				sizeof(g_sPrepTime));
+	kvMainCfg.GetString("BuildTimeMessage", 	g_sBuildTimeMsg,			sizeof(g_sBuildTimeMsg));
+	kvMainCfg.GetString("PrepTimeMessage", 		g_sPrepTimeMsg,				sizeof(g_sPrepTimeMsg));
+	kvMainCfg.GetString("ReleaseMessage", 		g_sReleaseMsg,				sizeof(g_sReleaseMsg));
+	kvMainCfg.GetString("Prefix", 				Prefix,						sizeof(Prefix));
+	kvMainCfg.GetString("RoundTime", 			g_sRoundTime, 				sizeof(g_sRoundTime));
+	kvMainCfg.GetString("MaxLocks", 			g_sMaxLocks, 				sizeof(g_sMaxLocks));
+	kvMainCfg.GetString("RemoveNotUsedBlocks", 	g_sRemoveNotUsedBlocks, 	sizeof(g_sRemoveNotUsedBlocks));
+	kvMainCfg.GetString("RemoveBlockAfterDeath",g_sRemoveBlockAfterDeath, 	sizeof(g_sRemoveBlockAfterDeath));
+	kvMainCfg.GetString("MoneyPerKill", 		g_sMoneyPerKill,			sizeof(g_sMoneyPerKill));
+	kvMainCfg.GetString("PushPlayersOfBlocks", 	g_sPushPlayersOfBlocks,		sizeof(g_sPushPlayersOfBlocks));
 	
 	
 	g_fBuildTime	= StringToFloat(g_sBuildTime);
@@ -198,7 +205,7 @@ public Action BB_RoundStart(Handle event, const char[] name, bool dontBroadcast)
 
 public Action BB_LockBlock(int client, const char[] cmd, int argc) 
 {
-	LockBlock(client);
+	LockBlock(client, 0, true);
 }
 
 public Action CMD_LastMover(int client, int args)
@@ -211,8 +218,6 @@ public Action CMD_LastMover(int client, int args)
 		if(lastmover > 0) {
 			char username[MAX_NAME_LENGTH];
 			GetClientName(lastmover, username, sizeof(username));
-			//PrintToChatAll("%s%T", Prefix, "Last mover", client, username);
-			//CPrintToChat(client, "%s%T", Prefix, "Last mover", client, username);
 			CPrintToChat(client, "%s%T", Prefix, "Last mover", client, username);
 		} else {
 			CPrintToChat(client, "%s%T", Prefix, "Not moved", client);

@@ -9,24 +9,26 @@ public void Locking_RoundStart()
 		clientlocks[i] = 0;
 }
 
-void LockBlock(int client)
+void LockBlock(int client, int entitys = 0, bool lockedWithG = false)
 {
 
 	if (IsAdmin(client) || IsPlayerAlive(client) && GetClientTeam(client) == BUILDERS && IsBuildTime())
 	{
-		int entity = GetTargetBlock(client);
+		int entity = (entitys == 0) ? GetTargetBlock(client) : entitys;
+			
 		if (entity != -1)
 		{
 			int owner = GetBlockOwner(entity);
 			
-			// block has now owner yet: Lock it!
+			// block has no owner yet: Lock it!
 			if (owner <= 0)
 			{
 				if (clientlocks[client] < g_iMaxLocks)
 				{
 					ColorBlockByEntity(client, entity, false);
 					SetBlockOwner(entity, client);
-					PrintHintText(client, "%T", "Locked", client);
+					if(lockedWithG)
+						PrintHintText(client, "%T", "Locked", client);
 					clientlocks[client]++;
 				} 
 				else  PrintHintText(client, "%T", "Max locked", client, g_iMaxLocks);

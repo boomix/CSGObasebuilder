@@ -57,7 +57,7 @@ public void Respawn_OnPrepTimeEnd()
 //Respawns dead player
 public void Respawn_OnPlayerDeath(int client)
 {
-	CreateTimer(4.0, Respawn_Player, client);
+	CreateTimer(1.0, Respawn_Player, client);
 }
 
 public Action Respawn_Player(Handle tmr, any client)

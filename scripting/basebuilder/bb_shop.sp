@@ -13,27 +13,20 @@ public Action CMD_Shop(int client, int args)
 		Menu shopmenu = new Menu(MenuHandler_Shop);
 		SetMenuTitle(shopmenu, "Zombie shop");
 		
-		KeyValues kv = CreateKeyValues("zm_shop");
-		kv.ImportFromFile(g_sBasebuilderConfig3);
 	 
-		if (!kv.GotoFirstSubKey())
-		{
+		if (!kvZmShop.GotoFirstSubKey())
 			return Plugin_Handled;
-		}
 	 
-		char ItemID[10];
-		char name[150];
-		char price[20];
+		char ItemID[10], name[150], price[20];
 		do
 		{
-			kv.GetSectionName(ItemID, sizeof(ItemID));
-			kv.GetString("name", name, sizeof(name));
-			kv.GetString("price", price, sizeof(price));
+			kvZmShop.GetSectionName(ItemID, sizeof(ItemID));
+			kvZmShop.GetString("name", name, sizeof(name));
+			kvZmShop.GetString("price", price, sizeof(price));
 			Format(name, sizeof(price), "%s (%s$)", name, price);
 			shopmenu.AddItem(ItemID, name);
-		} while (kv.GotoNextKey());
+		} while (kvZmShop.GotoNextKey());
 	 
-		delete kv;
 		shopmenu.Display(client, 0);
 	}
 	
@@ -41,28 +34,20 @@ public Action CMD_Shop(int client, int args)
 	{
 		Menu shopmenu = new Menu(MenuHandler_Shop);
 		SetMenuTitle(shopmenu, "Builder shop");
-		
-		KeyValues kv = CreateKeyValues("ct_shop");
-		kv.ImportFromFile(g_sBasebuilderConfig4);
 	 
-		if (!kv.GotoFirstSubKey())
-		{
+		if (!kvCtShop.GotoFirstSubKey())
 			return Plugin_Handled;
-		}
 	 
-		char ItemID[10];
-		char name[150];
-		char price[20];
+		char ItemID[10], name[150], price[20];
 		do
 		{
-			kv.GetSectionName(ItemID, sizeof(ItemID));
-			kv.GetString("name", name, sizeof(name));
-			kv.GetString("price", price, sizeof(price));
+			kvCtShop.GetSectionName(ItemID, sizeof(ItemID));
+			kvCtShop.GetString("name", name, sizeof(name));
+			kvCtShop.GetString("price", price, sizeof(price));
 			Format(name, sizeof(price), "%s (%s$)", name, price);
 			shopmenu.AddItem(ItemID, name);
-		} while (kv.GotoNextKey());
+		} while (kvCtShop.GotoNextKey());
 	 
-		delete kv;
 		shopmenu.Display(client, 0);
 	}
 
@@ -79,19 +64,17 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 			char info[32];
 			GetMenuItem(menu, item, info, sizeof(info));
 			
-			KeyValues kvzmShop = CreateKeyValues("zm_shop");
-			
 			char configfile[PLATFORM_MAX_PATH];
 			if(GetClientTeam(client) == ZOMBIES)
 				configfile = g_sBasebuilderConfig3;
 			else if(GetClientTeam(client) == BUILDERS)
 				configfile = g_sBasebuilderConfig4;
 			
-			if(!kvzmShop.ImportFromFile(configfile)) return;
-			if (!kvzmShop.JumpToKey(info)) return;
+			if (!kvZmShop.JumpToKey(info)) 
+				return;
 				
 			char price[10];
-			kvzmShop.GetString("price", price, sizeof(price));
+			kvZmShop.GetString("price", price, sizeof(price));
 			int iPrice = StringToInt(price);
 			int clientMoney = Client_GetMoney(client);
 			
@@ -104,14 +87,13 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 				
 				//Print message in chat
 				char name[50];
-				kvzmShop.GetString("name", name, sizeof(name));
+				kvZmShop.GetString("name", name, sizeof(name));
 				CPrintToChat(client, "%s%T", Prefix, "Shop bought item", client, name);
 				
 				//Main functions
-				char sItem[50];
-				char value[50];
-				kvzmShop.GetString("item", sItem, sizeof(sItem));
-				kvzmShop.GetString("value", value, sizeof(value));
+				char sItem[50], value[50];
+				kvZmShop.GetString("item", sItem, sizeof(sItem));
+				kvZmShop.GetString("value", value, sizeof(value));
 				
 				if(StrEqual(sItem, "speed"))
 				{
@@ -170,8 +152,6 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 					GiveGoldenAk(client);
 				
 			}
-			
-			delete kvzmShop;
 
 			
 		}

@@ -89,3 +89,5 @@ bool g_PartyInviter[MAXPLAYERS + 1];
 int g_iDecalEntity[MAXPLAYERS + 1] = 1;
 
 bool b_PlayerStuck[MAXPLAYERS + 1];
+
+KeyValues kvMainCfg, kvZombies, kvZmShop, kvCtShop;
