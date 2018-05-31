@@ -67,19 +67,19 @@ public Action BB_PlayerHurt(Handle event, const char[] name, bool dontBroadcast)
 
 public void OnClientPutInServer(int client)
 {
-	
-	NoFallDamege_OnClientPutInServer(client);
-	Zombies_OnClientPutInServer(client);
-	Weapons_OnClientPutInServer(client);
-	TeamSwitch_OnClientPutInServer(client);
-	Blockmoving_OnClientPutInServer(client);
-	Party_OnClientPutInServer(client);
-	GoldenAk_OnClientPutInServer(client);
-	Respawn_OnClientPutInServer(client);
-	Help_OnClientPutInServer(client);
-	NotHisBase_OnClientPutInServer(client);
-	Locking_OnClientPutInServer(client);
-
+	if(!IsClientSourceTV(client)) {
+		NoFallDamege_OnClientPutInServer(client);
+		Zombies_OnClientPutInServer(client);
+		Weapons_OnClientPutInServer(client);
+		TeamSwitch_OnClientPutInServer(client);
+		Blockmoving_OnClientPutInServer(client);
+		Party_OnClientPutInServer(client);
+		GoldenAk_OnClientPutInServer(client);
+		Respawn_OnClientPutInServer(client);
+		Help_OnClientPutInServer(client);
+		NotHisBase_OnClientPutInServer(client);
+		Locking_OnClientPutInServer(client);
+	}
 }
 
 public void OnClientDisconnect(int client) 
@@ -96,7 +96,6 @@ public void OnClientDisconnect(int client)
 public Action BB_PlayerSpawn(Handle event, const char[] name, bool dontBroadcast) 
 {
 	int client = GetClientOfUserId(GetEventInt(event, "userid"));
-
 	Radar_PlayerSpawn(client);
 	Zombies_PlayerSpawn(client);
 	Teamswitch_PlayerSpawn(client);

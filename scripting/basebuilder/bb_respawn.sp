@@ -7,7 +7,7 @@ public void Respawn_OnClientPutInServer(int client)
 
 public void Respawn_PlayerTeam(int client)
 {
-	if(g_bFirstTeamJoin[client]) 
+	if(g_bFirstTeamJoin[client] && !IsClientSourceTV(client)) 
 	{
 		g_bFirstTeamJoin[client] = false;
 		CreateTimer(5.0, Respawn_Player, client);
