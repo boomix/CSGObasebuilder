@@ -14,6 +14,7 @@ if(IsClientInGame(%1))
 Handle g_OnBuildTimeStart;
 Handle g_OnPrepTimeStart;
 Handle g_OnPrepTimeEnd;
+Handle g_OnBuilderInfected;
 Handle TimeTimer;
 Handle g_hTimer_Query[MAXPLAYERS + 1];
 

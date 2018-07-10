@@ -180,6 +180,7 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	g_OnBuildTimeStart = CreateGlobalForward("BaseBuilder_OnBuildTimeStart", ET_Ignore);
 	g_OnPrepTimeStart = CreateGlobalForward("BaseBuilder_OnPrepTimeStart", ET_Ignore);
 	g_OnPrepTimeEnd = CreateGlobalForward("BaseBuilder_OnPrepTimeEnd", ET_Ignore);
+	g_OnBuilderInfected = CreateGlobalForward("BaseBuilder_OnBuilderInfected", ET_Ignore);
 	
 	return APLRes_Success;
 }
