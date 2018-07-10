@@ -55,13 +55,20 @@ public void Respawn_OnPrepTimeEnd()
 }
 
 //Respawns dead player
-public void Respawn_OnPlayerDeath(int client)
+public void Respawn_OnPlayerDeath(int victim, int attacker)
 {
-	CreateTimer(1.0, Respawn_Player, client);
+	DataPack pack = new DataPack();
+	pack.WriteCell(victim);
+	pack.WriteCell(attacker);
+	CreateTimer(1.0, Respawn_Player, pack);
 }
 
-public Action Respawn_Player(Handle tmr, any client)
+public Action Respawn_Player(Handle tmr, DataPack pack)
 {
+	pack.Reset();
+	int client = pack.ReadCell();
+	int attacker = pack.ReadCell();
+	
 	if(IsClientInGame(client) && !IsPlayerAlive(client))
 	{
 		if(!g_RoundEnd && client != 0 && IsClientInGame(client)) {
@@ -91,6 +98,10 @@ public Action Respawn_Player(Handle tmr, any client)
 					CS_SwitchTeam(client, ZOMBIES);
 					CS_RespawnPlayer(client);
 					TeleportEntity(client, CTSpawnOrg, CTSpawnAng, NULL_VECTOR);
+					// FORWARD
+					Call_StartForward(g_OnBuilderInfected);
+					Call_PushCell(client);
+					Call_PushCell(attacker);
 				}
 			}
 		}
