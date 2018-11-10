@@ -10,7 +10,10 @@ public void Respawn_PlayerTeam(int client)
 	if(g_bFirstTeamJoin[client] && !IsClientSourceTV(client)) 
 	{
 		g_bFirstTeamJoin[client] = false;
-		CreateTimer(5.0, Respawn_Player, client);
+		DataPack pack = new DataPack();
+		pack.WriteCell(GetClientUserId(client));
+		pack.WriteCell(-1);
+		CreateTimer(5.0, Respawn_Player, pack);
 	}		
 }
 
@@ -58,16 +61,16 @@ public void Respawn_OnPrepTimeEnd()
 public void Respawn_OnPlayerDeath(int victim, int attacker)
 {
 	DataPack pack = new DataPack();
-	pack.WriteCell(victim);
-	pack.WriteCell(attacker);
+	pack.WriteCell(GetClientUserId(victim));
+	pack.WriteCell(GetClientUserId(attacker));
 	CreateTimer(1.0, Respawn_Player, pack);
 }
 
 public Action Respawn_Player(Handle tmr, DataPack pack)
 {
 	pack.Reset();
-	int client = pack.ReadCell();
-	int attacker = pack.ReadCell();
+	int client = GetClientOfUserId(pack.ReadCell());
+	int attacker = GetClientOfUserId(pack.ReadCell());
 	
 	if(IsClientInGame(client) && !IsPlayerAlive(client))
 	{
@@ -98,10 +101,14 @@ public Action Respawn_Player(Handle tmr, DataPack pack)
 					CS_SwitchTeam(client, ZOMBIES);
 					CS_RespawnPlayer(client);
 					TeleportEntity(client, CTSpawnOrg, CTSpawnAng, NULL_VECTOR);
-					// FORWARD
-					Call_StartForward(g_OnBuilderInfected);
-					Call_PushCell(client);
-					Call_PushCell(attacker);
+					
+					if(attacker > 0) {
+						// FORWARD
+						Call_StartForward(g_OnBuilderInfected);
+						Call_PushCell(client);
+						Call_PushCell(attacker);
+					}
+					
 				}
 			}
 		}
