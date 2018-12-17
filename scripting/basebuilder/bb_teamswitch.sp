@@ -2,7 +2,7 @@ public void Teamswitch_RoundStart()
 {
 	LoopAllPlayers(i)
 	{
-		if(!IsClientReplay(i) && !IsClientSourceTV(i))
+		if(!IsClientReplay(i) && !IsClientSourceTV(i) && GetClientTeam(i) != 1)
 		{	
 			if(GetClientTeam(i) == BUILDERS)
 				g_bWasBuilderThisRound[i] = true;
@@ -26,7 +26,7 @@ public void Teamswitch_RoundEnd()
 
 	LoopAllPlayers(i)
 	{
-		if(!IsClientReplay(i) && !IsClientSourceTV(i))
+		if(!IsClientReplay(i) && !IsClientSourceTV(i) && GetClientTeam(i) != 1)
 		{
 			if(g_bWasBuilderThisRound[i])
 			{
