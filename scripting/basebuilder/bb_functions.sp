@@ -35,7 +35,7 @@ public Action BB_PlayerDeath(Handle event, const char[] name, bool dontBroadcast
 	
 	Sounds_OnPlayerDeath(client, attacker);
 	OldBlocks_OnPlayerDeath(client);
-	Respawn_OnPlayerDeath(client, attacker);
+	Respawn_OnPlayerDeath(client);
 	Money_OnPlayerDeath(attacker);
 	Party_OnPlayerDeath(client);
 

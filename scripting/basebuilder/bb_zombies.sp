@@ -127,6 +127,13 @@ void SetPlayerAsZombie(int client)
 		PrecacheModel(zmArms, true);
 	SetPlayerArms(client, zmArms);
 	SetEntityGravity(client, fZmGravity);
+	
+	DataPack pack;
+	CreateDataTimer(0.3, ConfirmGravity, pack);
+	pack.WriteCell(GetClientUserId(client));
+	pack.WriteCell(g_iClientClass[client]);
+	pack.WriteCell(GetClientTeam(client));
+	pack.WriteFloat(fZmGravity);
 	SetEntityHealth(client, iZmHealth);
 	SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", fZmSpeed);
 	if(!IsModelPrecached(zmModel))
@@ -137,6 +144,24 @@ void SetPlayerAsZombie(int client)
 	PlayerLastSpeed[client] = fZmSpeed;
 
 
+}
+
+public Action ConfirmGravity(Handle timer, DataPack pack)
+{
+	int userID, class, team;
+	float gravity;
+	
+	pack.Reset();
+	userID = pack.ReadCell();
+	class = pack.ReadCell();
+	team = pack.ReadCell();
+	gravity = pack.ReadFloat();
+	
+	int client = GetClientOfUserId(userID);
+	if(client > 0)
+		if(GetClientTeam(client) == team && class == g_iClientClass[client])	
+			SetEntityGravity(client, gravity);
+	
 }
 
 void SetPlayerAsBuilder(int client)

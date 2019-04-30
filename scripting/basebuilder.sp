@@ -48,7 +48,7 @@ EngineVersion g_Game;
 
 public Plugin myinfo = 
 {
-	name = "Basebuilder 2.3.1",
+	name = "Basebuilder 2.3.2",
 	author = PLUGIN_AUTHOR,
 	description = "Gamemode from cs 1.6  - Basebuilder .",
 	version = PLUGIN_VERSION,
@@ -90,6 +90,8 @@ public void OnPluginStart()
 	AddCommandListener(BB_LockBlock, "drop");
 	AddCommandListener(BB_BlockKill, "kill");
 	AddCommandListener(BB_BlockKill, "explode");
+	AddCommandListener(BB_BlockKill, "explodevector");
+	AddCommandListener(BB_BlockKill, "killvector");
 	AddCommandListener(BB_BlockTeamChange, "jointeam");
 	
 	BuildPath(Path_SM, g_sBasebuilderConfig, sizeof(g_sBasebuilderConfig), "configs/basebuilder/bb_main.cfg");
@@ -180,7 +182,6 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	g_OnBuildTimeStart = CreateGlobalForward("BaseBuilder_OnBuildTimeStart", ET_Ignore);
 	g_OnPrepTimeStart = CreateGlobalForward("BaseBuilder_OnPrepTimeStart", ET_Ignore);
 	g_OnPrepTimeEnd = CreateGlobalForward("BaseBuilder_OnPrepTimeEnd", ET_Ignore);
-	g_OnBuilderInfected = CreateGlobalForward("BaseBuilder_OnBuilderInfected", ET_Ignore);
 	
 	return APLRes_Success;
 }
