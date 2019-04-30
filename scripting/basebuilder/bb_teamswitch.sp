@@ -2,10 +2,13 @@ public void Teamswitch_RoundStart()
 {
 	LoopAllPlayers(i)
 	{
-		if(GetClientTeam(i) == BUILDERS)
-			g_bWasBuilderThisRound[i] = true;
-		else
-			g_bWasBuilderThisRound[i] = false;
+		if(!IsClientReplay(i) && !IsClientSourceTV(i) && GetClientTeam(i) != 1)
+		{	
+			if(GetClientTeam(i) == BUILDERS)
+				g_bWasBuilderThisRound[i] = true;
+			else
+				g_bWasBuilderThisRound[i] = false;
+		}
 	}
 }
 
@@ -23,13 +26,19 @@ public void Teamswitch_RoundEnd()
 
 	LoopAllPlayers(i)
 	{
-		if(g_bWasBuilderThisRound[i]) {
-			CS_SwitchTeam(i, ZOMBIES);
-		} else {
-			CS_SwitchTeam(i, BUILDERS);
-		}
+		if(!IsClientReplay(i) && !IsClientSourceTV(i) && GetClientTeam(i) != 1)
+		{
+			if(g_bWasBuilderThisRound[i])
+			{
+				CS_SwitchTeam(i, ZOMBIES);
+			}
+			else
+			{
+				CS_SwitchTeam(i, BUILDERS);
+			}
 		
-		g_bWasBuilderThisRound[i] = false;
+			g_bWasBuilderThisRound[i] = false;
+		}
 	}
 
 }
