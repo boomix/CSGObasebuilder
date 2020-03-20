@@ -65,18 +65,18 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 			char info[32];
 			GetMenuItem(menu, item, info, sizeof(info));
 			
-			char configfile[PLATFORM_MAX_PATH];
+			KeyValues kv;
 			if(GetClientTeam(client) == ZOMBIES)
-				configfile = g_sBasebuilderConfig3;
+				kv = kvZmShop;
 			else if(GetClientTeam(client) == BUILDERS)
-				configfile = g_sBasebuilderConfig4;
+				kv = kvCtShop;
 			
-			kvZmShop.Rewind();
-			if (!kvZmShop.JumpToKey(info)) 
+			kv.Rewind();
+			if (!kv.JumpToKey(info)) 
 				return;
 				
 			char price[10];
-			kvZmShop.GetString("price", price, sizeof(price));
+			kv.GetString("price", price, sizeof(price));
 			int iPrice = StringToInt(price);
 			int clientMoney = Client_GetMoney(client);
 			
@@ -89,13 +89,13 @@ public int MenuHandler_Shop(Menu menu, MenuAction action, int client, int item)
 				
 				//Print message in chat
 				char name[50];
-				kvZmShop.GetString("name", name, sizeof(name));
+				kv.GetString("name", name, sizeof(name));
 				CPrintToChat(client, "%s%T", Prefix, "Shop bought item", client, name);
 				
 				//Main functions
 				char sItem[50], value[50];
-				kvZmShop.GetString("item", sItem, sizeof(sItem));
-				kvZmShop.GetString("value", value, sizeof(value));
+				kv.GetString("item", sItem, sizeof(sItem));
+				kv.GetString("value", value, sizeof(value));
 				
 				if(StrEqual(sItem, "speed"))
 				{
